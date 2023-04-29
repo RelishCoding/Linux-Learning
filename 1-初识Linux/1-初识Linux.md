@@ -307,69 +307,53 @@ https://vault.centos.org/7.6.1810/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso
 
 # 七、远程连接Linux系统
 
-# 八、拓展：WSL
-
-
-
 ## 图形化、命令行
 
-> 对于操作系统的使用，有 2 种使用形式：
+对于操作系统的使用，有 2 种使用形式：
 
 -   图形化页面使用操作系统
 
 -   以命令的形式使用操作系统
 
-> 不论是Windows 还是Linux 亦或是MacOS 系统，都是支持这两种使用形式。
+不论是 Windows 还是 Linux 亦或是 MacOS 系统，都是支持这两种使用形式。
 
 -   图形化：使用操作系统提供的图形化页面，以获得**图形化反馈**的形式去使用操作系统。
 
 -   命令行：使用操作系统提供的各类命令，以获得**字符反馈**的形式去使用操作系统。
 
-![](./media/image93.png){width="1.2083333333333333in"
-height="1.4986111111111111in"}高级软件人才培训专家
-
 ## Windows 系统的图形化和命令行
 
-![](./media/image94.jpeg){width="5.601020341207349in"
-height="3.35125in"}
+![](./img/image94.jpeg)
 
-![](./media/image95.jpeg)高级软件人才培训专家
 
-## ![](./media/image97.jpeg)Linux 系统的图形化和命令行
 
-![](./media/image99.jpeg){width="5.999139326334208in"
-height="3.590624453193351in"}
+![](./img/image95.jpeg)
 
-> **使用命令行学习 Linux 系统**
->
-> 尽管图形化是大多数人使用计算机的第一选择，但是在 Linux
-> 操作系统上，这个选择被反转了。
->
-> 无论是企业开发亦或是个人开发，使用 Linux
-> 操作系统，多数都是使用的：**命令行**。
->
-> 这是因为：
+## Linux 系统的图形化和命令行
 
--   Linux 从诞生至今，在图形化页面的优化上，并未重点发力。所以 Linux
-    操作系统的图形化页面：不好用、不稳定。
+![](./img/image99.jpeg)
 
+
+
+![](./img/image97.jpeg)
+
+## 使用命令行学习 Linux 系统
+
+尽管图形化是大多数人使用计算机的第一选择，但是在 Linux 操作系统上，这个选择被反转了。
+
+无论是企业开发亦或是个人开发，使用 Linux 操作系统，多数都是使用的：**命令行**。
+
+这是因为：
+
+-   Linux 从诞生至今，在图形化页面的优化上，并未重点发力。所以 Linux 操作系统的图形化页面：不好用、不稳定。
+    
 -   在开发中，使用命令行形式，效率更高，更加直观，并且资源占用低，程序运行更稳定。
-
-> 所以，后续的课程学习中，我们：
-
--   除了在少数需要做对照讲解的情况下会使用图形化页面
-
--   ![](./media/image100.png){width="1.269443350831146in"
-    height="1.5791655730533682in"}其余都会以命令行的形式去讲解 Linux
-    操作系统的使用
 
 ## FinalShell
 
-> 既然决定使用命令行去学习 Linux
-> 操作系统，那么就必须丰富一下工具的使用。
->
-> 我们使用 VMware 可以得到 Linux 虚拟机，但是在 VMware 中操作 Linux
-> 的命令行页面不太方便，主要是：
+既然决定使用命令行去学习 Linux 操作系统，那么就必须丰富一下工具的使用。
+
+我们使用 VMware 可以得到 Linux 虚拟机，但是在 VMware 中操作 Linux 的命令行页面不太方便，主要是：
 
 -   内容的复制、粘贴跨越 VMware 不方便
 
@@ -377,118 +361,76 @@ height="3.590624453193351in"}
 
 -   也就是和 Linux 系统的各类交互，跨越 VMware 不方便
 
-> 我们可以通过第三方软件， FinalShell ，远程连接到 Linux 操作系统之上。
->
-> 并通过 FinalShell 去操作 Linux 系统。
->
-> ![](./media/image101.png){width="1.6in"
-> height="1.9805555555555556in"}这样各类操作都会十分的方便。
+我们可以通过第三方软件 FinalShell ，远程连接到 Linux 操作系统之上，并通过 FinalShell 去操作 Linux 系统。这样各类操作都会十分的方便。
 
-## FinalShell
+FinalShell 的下载地址为： 
 
-> FinalShell 的下载地址为： Windows:
->
-> ![](./media/image102.png){width="1.6347222222222222in"
-> height="2.0458333333333334in"}<http://www.hostbuf.com/downloads/finalshell_install.exe>
-> Mac:
-> <http://www.hostbuf.com/downloads/finalshell_install.pkg>下载完成后双击打开安装。
+* Windows：<http://www.hostbuf.com/downloads/finalshell_install.exe>
+* Mac：<http://www.hostbuf.com/downloads/finalshell_install.pkg>
 
-![](./media/image103.png){width="1.3694444444444445in"
-height="1.6805555555555556in"}
+下载完成后双击打开安装。
 
 ## Windows 系统安装 FinalShell
 
-> 按照提示一直下一步即可安装完成。
+按照提示一直下一步即可安装完成。
 
-![](./media/image104.png)
+![](./img/image104.png)
+
+
+
+![](img/image105.png)
 
 ## Mac 系统安装 FinalShell
 
-> 打开下载的 pkg 文件，按照提示下一步即可安装成功。
+按住 Ctrl 键不要松，鼠标左键选择打开下载的 pkg 文件，按照提示下一步即可安装成功。
 
-![](./media/image109.png)
-
-![](./media/image114.png){width="1.7638888888888888in"
-height="2.2083333333333335in"}高级软件人才培训专家
-
-![](./media/image115.png){width="1.6694444444444445in"
-height="1.6805555555555556in"}
+![](./img/image109.png)
 
 ## 连接到 Linux 系统
 
 > 首先，先查询到 Linux 系统的 IP 地址
 
-![](./media/image116.png){width="6.166094706911636in"
-height="4.617291119860018in"}
+![](./img/image116.png)
 
-![](./media/image117.png){width="1.8249989063867016in"
-height="2.0347222222222223in"}
+> 打开Finshell 软件，配置到 Linux 系统的连接（ Mac 和Windows 系统的操作一致，不再分开赘述）
 
-## 连接到 Linux 系统
+![](./img/image118.png)
 
-> 打开Finshell 软件，配置到 Linux 系统的连接（ Mac 和Windows
-> 系统的操作一致，不再分开赘述）
 
-![](./media/image118.png){width="8.380124671916011in"
-height="1.1354166666666667in"}
 
-![](./media/image119.jpeg){width="6.879370078740157in"
-height="2.9184372265966756in"}
-
-![](./media/image120.png)
-
-## 连接到 Linux 系统
+![](./img/image119.jpeg)
 
 > 按图示配置连接，并点击确定
 
-![](./media/image121.jpeg){width="4.91392716535433in"
-height="4.361457786526684in"}
-
-高级软件人才培训专家
-
-![](./media/image122.png)
-
-## 连接到 Linux 系统
+![](./img/image121.jpeg)
 
 > 打开连接管理器
 
-![](./media/image123.png){width="8.405941601049868in"
-height="1.0833333333333333in"}
+![](./img/image123.png)
 
 > 双击刚刚配置好的连接
 
-![](./media/image124.jpeg){width="6.948858267716536in"
-height="2.9479166666666665in"}
-
-高级软件人才培训专家
-
-![](./media/image125.png)
-
-## 连接到 Linux 系统
+![](./img/image124.jpeg)
 
 > 点击接受并保存
 
-![](./media/image126.jpeg){width="3.9068383639545057in"
-height="2.1145833333333335in"}
-
-高级软件人才培训专家
-
-## 连接到 Linux 系统
+![](./img/image126.jpeg)
 
 > 如图连接成功
->
-> ![](./media/image127.jpeg){width="6.0375in"
-> height="3.754166666666667in"}**注意：**
->
-> **Linux 虚拟机如果重启，有可能，发生 IP 改变**
->
-> **如果改变 IP 需要在FinalShell 中修改连接的 IP 地址**
->
-> ![](./media/image128.png){width="2.136111111111111in"
-> height="2.0444444444444443in"}**后面我们会讲解如何固定 IP
-> 地址不发生改变**
 
-1.  ![](./media/image29.png)什么是图形化操作，什么是命令行操作？
+![](./img/image127.jpeg)
+
+> 注意：
+>
+> Linux 虚拟机如果重启，有可能，发生 IP 改变
+> 
+>如果改变 IP 需要在FinalShell 中修改连接的 IP 地址
+> 
+>后面我们会讲解如何固定 IP 地址不发生改变
+
+## 总结
+
+1.  什么是图形化操作，什么是命令行操作？
 
 -   图形化操作是指使用操作系统附带的图形化页面，以图形化的窗口形式获得操作反馈，从而对操作系统进行操作、使用
 
@@ -502,199 +444,147 @@ height="2.1145833333333335in"}
 
 -   企业和开发者都选择命令行，所以我们也学习命令行
 
-3.  ![](./media/image29.png)为什么使用 FinalShell 连接 Linux 去使用
+3.  为什么使用 FinalShell 连接 Linux 去使用
 
 -   操作 Linux 系统中间跨越 VMware 窗口会导致交互不太方便
 
 -   我们只需要使用命令行无需使用图形化，所以通过命令行远程连接使用即可
 
+4. 如何查看 Linux 的 IP 地址并远程连接呢
+
 -   在 Linux 操作系统中，桌面空白右键点击： open in terminal
 
--   输入 ifconfig ，即可看到IP 地址
+-   输入 ifconfig ，即可看到 IP 地址
 
--   在FinalShell 中配置好IP 地址，账号密码后即可连接成功
+-   在 FinalShell 中配置好 IP 地址，账号密码后即可连接成功
 
-# ![](./media/image6.png)![](./media/image7.png)目录
+# 八、拓展：WSL
 
-> Contents
+## 说明
 
-# ![](./media/image8.png)学习目标
+![](./img/image41.jpeg)
 
-> Learning Objectives
->
-> 1\. 掌握使用 WSL 获得 Ubuntu 系统环境
+WSL 章节仅仅作为扩展章节，并不是学习重点。
 
-![](./media/image129.png){width="1.5791666666666666in"
-height="1.8111111111111111in"}
+主要目的是扩展同学们的知识面，可以更简单、更轻松的获得 Linux 操作系统环境。
 
-## ![](./media/image41.jpeg){width="5.0680555555555555in" height="2.522221128608924in"}说明
-
-> WSL 章节仅仅作为扩展章节，并不是学习重点。
->
-> 主要目的是扩展同学们的知识面，可以更简单、更轻松的获得 Linux
-> 操作系统环境。
->
-> 同时基于 WSL 我们可以得到 Ubuntu 发行版环境，可以拓展除 CentOS
-> 发行版之外的额外体验和知识。
->
-> 课程后续的学习中，依旧是以 VMware 虚拟机中创建的 CentOS
-> 操作系统环境为主。部分内容会以 WSL 中得到的 Ubuntu
-> 环境为辅（非重点知识、可跳过）
-
-![](./media/image130.png){width="1.55in" height="1.8111111111111111in"}
+同时基于 WSL 我们可以得到 Ubuntu 发行版环境，可以拓展除 CentOS 发行版之外的额外体验和知识。
 
 ## 为什么要用 WSL
 
-> WSL 作为 Windows10
-> 系统带来的全新特性，正在逐步颠覆开发人员既有的选择。
+WSL 作为 Windows10 系统带来的全新特性，正在逐步颠覆开发人员既有的选择。
 
 -   传统方式获取 Linux 操作系统环境，是安装完整的虚拟机，如 VMware
 
 -   使用 WSL ，可以以非常轻量化的方式，得到 Linux 系统环境
 
-> 目前，开发者正在逐步抛弃以虚拟机的形式获取 Linux
-> 系统环境，而在逐步拥抱 WSL 环境。
->
-> 所以，课程也紧跟当下趋势，为同学们讲解如何使用 WSL ，简单、快捷的获得
-> Linux 系统环境。所以，为什么要用 WSL ，其实很简单：
+目前，开发者正在逐步抛弃以虚拟机的形式获取 Linux 系统环境，而在逐步拥抱 WSL 环境。
+
+为什么要用 WSL ，其实很简单：
 
 -   开发人员都在用，大家都用的，我们也要学习
 
 -   实在是太方便了，简单、好用、轻量化、省内存
 
-![](./media/image131.png)
-
 ## 什么是 WSL
 
-> WSL ： Windows Subsystem for Linux ，是用于 Windows 系统之上的 Linux
-> 子系统。
->
-> 作用很简单，可以在 Windows 系统中获得 Linux
-> 系统环境，并完全直连计算机硬件，无需通过虚拟机虚拟硬件。
->
-> 简而言之：
->
-> Windows10 的WSL 功能，可以无需单独虚拟一套硬件设备
->
-> 就可以直接使用主机的物理硬件，构建 Linux 操作系统
->
-> 并不会影响 Windows 系统本身的运行
+WSL ： Windows Subsystem for Linux ，是用于 Windows 系统之上的 Linux 子系统。
 
-高级软件人才培训专家
+作用很简单，可以在 Windows 系统中获得 Linux 系统环境，并完全直连计算机硬件，无需通过虚拟机虚拟硬件。
+
+![](./img/image131.png)
+
+简而言之：
+
+Windows10 的WSL 功能，可以无需单独虚拟一套硬件设备，就可以直接使用主机的物理硬件，构建 Linux 操作系统
+
+并不会影响 Windows 系统本身的运行
 
 ## WSL 部署
 
--   WSL 是 Windows10 自带功能，需要开启，无需下载
+WSL 是 Windows10 自带功能，需要开启，无需下载
 
-![](./media/image133.jpeg)
+第一步：
 
-![](./media/image134.jpeg)![](./media/image135.png){width="1.875in"
-height="1.697283464566929in"}![](./media/image136.png)![](./media/image137.png){width="1.6999989063867016in"
-height="2.488888888888889in"}**3**
+![](./img/image134.jpeg)
 
-高级软件人才培训专家
+第二步：
 
-![](./media/image138.png)
+![](./img/image133.jpeg)
 
-## WSL 部署
+第三步：
 
-> 点击确定后会进行部署
->
-> ![](./media/image140.jpeg){width="4.497221128608924in"
-> height="3.097930883639545in"}最后重启即可。
+![](./img/image135.png)
 
-![](./media/image141.png){width="5.251701662292214in"
-height="1.2333333333333334in"}
+第四步：
 
-高级软件人才培训专家
+![](./img/image136.png)
 
-![](./media/image142.png)
+点击确定后会进行部署
 
-## WSL 部署
+![](./img/image141.png)
 
--   ![](./media/image144.jpeg){width="2.0in"
-    height="0.9166666666666666in"}打开 Windows 应用商店
+![](./img/image140.jpeg)
 
-高级软件人才培训专家
+最后重启即可。
 
-![](./media/image145.png){width="1.6263888888888889in"
-height="1.8111111111111111in"}
+![](./img/image138.png)
 
-## WSL 部署
+打开 Windows 应用商店
 
-> 点击获取并安装
+![](./img/image144.jpeg)
 
-![](./media/image146.jpeg){width="5.046847112860893in"
-height="2.84375in"}![](./media/image147.png){width="4.176388888888889in"
-height="0.8958333333333334in"}
+搜索 Ubuntu
 
-![](./media/image148.png){width="2.1527777777777777in"
-height="2.0902777777777777in"}
+![](./img/image142.png)
 
-## WSL 部署
+点击获取并安装
 
-> 点击启动
+![](./img/image146.jpeg)
 
-![](./media/image149.jpeg){width="6.4200699912510935in"
-height="4.706666666666667in"}
 
-![](./media/image150.png){width="1.8111100174978128in"
-height="1.7583333333333333in"}
 
-## WSL 部署
+![](./img/image147.png)
+
+点击启动
+
+![](./img/image149.jpeg)
 
 > 输入用户名用以创建一个用户：
 
-![](./media/image151.png){width="8.447222222222223in"
-height="0.9479166666666666in"}
+![](./img/image151.png)
 
 > 输入两次密码确认（注意，输入密码没有反馈，不用理会，正常输入即可）
 
-![](./media/image152.png){width="8.405555555555555in" height="1.125in"}
-
-![](./media/image153.png)
-
-## WSL 部署
+![](./img/image152.png)
 
 > 至此，得到了一个可用的 Ubuntu 操作系统环境
 
-![](./media/image154.png){width="8.751397637795275in"
-height="4.39437445319335in"}
-
-高级软件人才培训专家
-
-![](./media/image155.png){width="2.9402777777777778in" height="3.025in"}
+![](./img/image154.png)
 
 ## 安装 Windows Terminal 软件
 
-> Ubuntu 自带的终端窗口软件不太好用，我们可以使用微软推出的： Windows
-> Terminal 软件在应用商店中搜索 terminal 关键字，找到 Windows Terminal
-> 软件下载并安装
+Ubuntu 自带的终端窗口软件不太好用，我们可以使用微软推出的 Windows Terminal 软件
 
-![](./media/image156.jpeg){width="6.265625546806649in"
-height="3.7502077865266843in"}
+在应用商店中搜索 terminal 关键字，找到 Windows Terminal 软件下载并安装
 
-![](./media/image157.png)
+![](./img/image156.jpeg)
 
-## 安装 Windows Terminal 软件
+打开 Terminal，进行设置
 
-![](./media/image158.jpeg)
+![](./img/image158.jpeg)
 
-高级软件人才培训专家
 
-![](./media/image160.jpeg)
 
-## 安装 Windows Terminal 软件
+![](img/image159.png)
 
 > 再次打开 Windows Terminal 软件，即默认使用 Ubuntu 系统了（ WSL ）
 
-高级软件人才培训专家
-
-> 补充：关于后续学习的环境选择
+![](./img/image160.jpeg)
 
 ## Windows 系统学习的环境选择
 
-> 首先：
+首先：
 
 -   无论是基于VMware Workstation 软件构建的CentOS Linux 环境
 
@@ -702,78 +592,60 @@ height="3.7502077865266843in"}
 
 -   均满足课程学习需求（不管是 CentOS 还是Ubuntu ，命令是通用的）
 
-> 课程推荐大家使用 VMware WorkStation 内构建的CentOS Linux 环境进行学习
->
-> 因为 WSL
-> 虽然好用，但是是直连我们自己的电脑的，如果误操作可能带来重要文件的丢失甚至损坏系统。所以，在虚拟机内操作最好，虚拟机内怎么折腾都行，不会影响自己的电脑的。
->
-> WSL 作为一个备用，等同学们熟练 Linux 的使用后，在去尝试重度使用。
+课程推荐大家使用 VMware WorkStation 内构建的CentOS Linux 环境进行学习
+
+因为 WSL 虽然好用，但是是直连我们自己的电脑的，如果误操作可能带来重要文件的丢失甚至损坏系统。所以，在虚拟机内操作最好，虚拟机内怎么折腾都行，不会影响自己的电脑的。
+
+WSL 作为一个备用，等同学们熟练 Linux 的使用后，再去尝试重度使用。
 
 ## Mac 系统学习的环境选择
 
-> 对于 Mac 系统的同学，同样可以有 2 种Linux 环境可用
+对于 Mac 系统的同学，同样可以有 2 种Linux 环境可用
 
--   基于VMware Fusion 构建的 CentOS 虚拟机（和 Windows
-    系统的没有任何区别，一样用）
+-   基于VMware Fusion 构建的 CentOS 虚拟机（和 Windows 系统的没有任何区别，一样用）
 
 -   基于 Mac 系统本身的终端提供 Linux 命令行环境
 
-    -   Mac 系统是基于 Unix 系统内核的操作系统，其和 Linux
-        > 基础操作命令是 100% 兼容的
-
+    -   Mac 系统是基于 Unix 系统内核的操作系统，其和 Linux 基础操作命令是 100% 兼容的
+        
     -   课程中学习的 Linux 命令，都可以在 Mac 系统中正常运行
 
-> ![](./media/image162.jpeg){width="5.370833333333334in"
-> height="3.4055555555555554in"}使用Mac 系统的同学，推荐使用 VMware
-> Fusion 构建的CentOS Linux 系统进行学习
->
-> 因为，尽管 Mac 本身的终端可以 100% 兼容上课的内容，但是
->
-> 毕竟是学习，如果因为练习命令而导致电脑重要文件被删除、损坏，系统出现问题
->
-> 就得不偿失了。
->
-> 所以，在虚拟机内的环境进行练习是最好的，无论怎么折腾都不会影响自己的电脑。
 
-# ![](./media/image6.png)![](./media/image7.png)目录
+![](./img/image162.jpeg)
 
-> Contents
+使用Mac 系统的同学，推荐使用 VMware Fusion 构建的CentOS Linux 系统进行学习
 
-# ![](./media/image8.png)学习目标
+因为，尽管 Mac 本身的终端可以 100% 兼容上课的内容，但是毕竟是学习，如果因为练习命令而导致电脑重要文件被删除、损坏，系统出现问题就得不偿失了。
 
-> Learning Objectives
+所以，在虚拟机内的环境进行练习是最好的，无论怎么折腾都不会影响自己的电脑。
 
-1.  掌握虚拟机快照的制作和还原
-
-![](./media/image163.png)
+# 九、拓展：虚拟机快照
 
 ## 虚拟机快照
 
-> 在学习阶段我们无法避免的可能损坏 Linux 操作系统。
->
-> 如果损坏的话，重新安装一个 Linux 操作系统就会十分麻烦。
->
-> VMware 虚拟机（ Workstation 和Funsion ）支持为虚拟机制作快照。
->
-> 通过快照将当前虚拟机的状态保存下来，在以后可以通过快照恢复虚拟机到保存的状态。
+在学习阶段我们无法避免的可能损坏 Linux 操作系统。
 
-高级软件人才培训专家
+如果损坏的话，重新安装一个 Linux 操作系统就会十分麻烦。
+
+VMware 虚拟机（ Workstation 和Funsion ）支持为虚拟机制作快照。
+
+通过快照将当前虚拟机的状态保存下来，在以后可以通过快照恢复虚拟机到保存的状态。
+
+![](./img/image163.png)
 
 ## 在VMware Workstation Pro 中制作并还原快照
 
-![](./media/image164.jpeg)
+![](./img/image164.jpeg)
 
-> **在VMware Fusion Pro 中制作并还原快照**
->
 > 快照制作需要虚拟机关机状态下（不关机也可以，但是比较慢，建议关机）
 
-![](./media/image169.jpeg)
+![](img/image165.png)
 
-1.  ![](./media/image29.png)快照有什么作用？
+## 在VMware Fusion Pro中制作并还原快照
 
-> 快照可以保存虚拟机的状态， 当虚拟机出现问题的时候， 可以通过预
+![](./img/image169.jpeg)
 
-2.  VMware Workstation 和 VMware Fusion 都支持制作快照去使用
 
-> ![](./media/image173.png){width="2.4960629921259843in"
-> height="1.030207786526684in"}
+
+![](img/image170.png)
+
