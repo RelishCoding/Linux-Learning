@@ -704,18 +704,6 @@ rm 命令支持通配符 \* ，用来做模糊匹配
 
 # 八、查找命令（which、find）
 
-# 九、grep、wc和管道符
-
-# 十、echo、tail和重定向符
-
-# 十一、vi编辑器
-
-
-
-
-
-
-
 ## which 命令
 
 我们在前面学习的 Linux 命令，其实它们的本体就是一个个的二进制可执行程序。和Windows 系统中的 .exe 文件，是一个意思。
@@ -766,36 +754,30 @@ rm 命令支持通配符 \* ，用来做模糊匹配
 
 基于通配符的含义，可以结合 find 命令做文件的模糊查询。
 
-#### find 命令 - 通配符
+-   查找所有以 test 开头的文件： find / -name "test\*"
 
--   ![](./media/image94.jpeg){width="3.2666666666666666in"
-    height="0.9680544619422572in"}查找所有以 test 开头的文件： find /
-    -name "test\*"
+![](./img/image47.jpeg)
 
 -   查找所有以 test 结尾的文件： find / -name "\*test"
 
--   ![](./media/image95.jpeg){width="4.215277777777778in"
-    height="1.4749989063867017in"}查找所有包含 test 的文件： find /
-    -name "\*test\*"
 
-![](./media/image96.jpeg){width="4.61584864391951in"
-height="1.6354166666666667in"}
+![](./img/image48.jpeg)
 
-![](./media/image97.png){width="2.1875in"
-height="2.7416666666666667in"}高级软件人才培训专家
+-   查找所有包含 test 的文件： find / -name "\*test\*"
 
-#### find 命令 - 按文件大小查找文件
+![](./img/image49.jpeg)
 
-> ![](./media/image98.png){width="3.0305555555555554in"
-> height="0.2805544619422572in"}语法：
->
-> • + 、- 表示大于和小于
+## find 命令 - 按文件大小查找文件
+
+语法：`find 起始路径 -size +|-n[kMG]`
+
++ +、- 表示大于和小于
 
 -   n 表示大小数字
 
 -   kMG 表示大小单位， k( 小写字母 ) 表示kb ， M 表示 MB ， G 表示 GB
 
-> 示例：
+示例：
 
 -   查找小于 10KB 的文件： find / -size -10k
 
@@ -803,39 +785,28 @@ height="2.7416666666666667in"}高级软件人才培训专家
 
 -   查找大于 1GB 的文件： find / -size +1G
 
-![](./media/image99.png){width="1.9624989063867018in"
-height="2.463888888888889in"}高级软件人才培训专家
+## 总结
 
-1.  ![](./media/image15.png)which 命令
+1.  which 命令
 
 -   查找命令的程序文件
-
--   语法：![](./media/image85.png){width="1.8430555555555554in"
-    > height="0.2597211286089239in"}
-
+-   语法：``find 起始路径 -name "被查找文件名"`
 -   无需选项，只需要参数表示查找哪个命令
 
+2. find 命令
+
 -   用于查找指定的文件
-
--   按文件名查找： ![](./media/image89.png){width="3.4888877952755903in"
-    > height="0.30138779527559056in"}
-
+-   按文件名查找：`find 起始路径 -name "被查找文件名"`
     -   支持通配符
+-   按文件大小查找：`find 起始路径 -size +|-n[kMG]`
 
--   ![](./media/image98.png){width="3.0305544619422573in"
-    > height="0.28055555555555556in"}按文件大小查找
+# 九、grep、wc和管道符
 
-> ![](./media/image17.png)课后练习
+# 十、echo、tail和重定向符
 
--   请使用 find 命令找出：名称中带有 centos 的文件 find / -name
-    > "\*centos\*"
+# 十一、vi编辑器
 
--   请使用 find 命令找出： /usr 目录内大于 100M 的文件 find /usr -size
-    > +100M
 
-# ![](./media/image7.png)目录
-
-## Contents
 
 -   Linux 的目录结构
 
