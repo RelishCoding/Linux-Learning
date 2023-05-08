@@ -802,80 +802,42 @@ rm 命令支持通配符 \* ，用来做模糊匹配
 
 # 九、grep、wc和管道符
 
-# 十、echo、tail和重定向符
+## grep 命令
 
-# 十一、vi编辑器
+可以通过 grep 命令，从文件中通过关键字过滤文件行。
 
-
-
--   Linux 的目录结构
-
--   ![](./media/image6.png)Linux 命令入门
-
--   目录切换相关命令 (cd/pwd)
-
--   相对路径、绝对路径和特殊路径符
-
--   创建目录命令 (mkdir)
-
--   文件操作命令 part1(touch 、 cat 、 more ）
-
--   文件操作命令 part2(cp 、 mv 、 rm ）
-
--   查找命令 (which 、 find ）
-
--   grep 、 wc 和管道符
-
--   echo 、 tail 和重定向符
-
--   vi 编辑器
-
-# ![](./media/image8.png)学习目标
-
-### Learning Objectives
-
-1.  掌握使用 grep 命令过滤文件内容
-
-2.  掌握使用 wc 命令统计内容数量
-
-3.  掌握 \| 管道符的概念和应用
-
-#### grep 命令
-
-> ![](./media/image100.png){width="2.5722222222222224in"
-> height="0.2916666666666667in"}可以通过 grep
-> 命令，从文件中通过关键字过滤文件行。语法：
+语法：`grep [-n] 关键字 文件路径`
 
 -   选项 -n ，可选，表示在结果中显示匹配的行的行号。
 
--   参数，关键字，必填，表示过滤的关键字，带有空格或其它特殊符号，建议使用""将关键字包围起来
+-   参数，关键字，必填，表示过滤的关键字，带有空格或其它特殊符号，建议使用 " " 将关键字包围起来
 
 -   参数，文件路径，必填，表示要过滤内容的文件路径，可作为内容输入端口
 
-> 现在，通过 touch 命令在 HOME 目录创建 itheima.txt
-> ，并通过图形化页面编辑并保存如下内容：
+现在，通过 touch 命令在 HOME 目录创建 itheima.txt，并通过图形化页面编辑并保存如下内容：
 
-![](./media/image101.jpeg){width="8.254623797025372in"
-height="1.1034372265966754in"}
+![](./img/image50.jpeg)
 
-#### grep 命令
+演示：
 
 -   过滤itheima 关键字
 
--   ![](./media/image102.jpeg){width="4.708333333333333in"
-    height="0.5097211286089239in"}过滤itcast 关键字
 
-> ![](./media/image103.jpeg){width="4.613888888888889in"
-> height="0.6972222222222222in"}•
+![](./img/image51.jpeg)
 
-![](./media/image104.jpeg){width="4.677804024496938in"
-height="0.46406167979002627in"}
+-   过滤itcast 关键字
 
-#### wc 命令做数量统计
+![](./img/image52.jpeg)
 
-> ![](./media/image105.png){width="2.6041666666666665in"
-> height="0.30138779527559056in"}可以通过 wc
-> 命令统计文件的行数、单词数量等语法：
+* 过滤 code 关键字并显示行号
+
+![](./img/image53.jpeg)
+
+## wc 命令做数量统计
+
+可以通过 wc 命令统计文件的行数、单词数量等
+
+语法：`wc [-c -m -l -w] 文件路径`
 
 -   选项， -c ，统计bytes 数量
 
@@ -887,69 +849,68 @@ height="0.46406167979002627in"}
 
 -   参数，文件路径，被统计的文件，可作为内容输入端口
 
-![](./media/image106.jpeg)
+演示：
 
-#### wc 命令做数量统计
+-   不带选项，统计文件
 
--   ![](./media/image107.jpeg){width="3.488888888888889in"
-    height="1.3541666666666667in"}不带选项，统计文件
+![](./img/image54.jpeg)
 
-> •
+* 统计字节数
+
+![](./img/image55.jpeg)
 
 -   统计字符数
 
-> • ![](./media/image108.jpeg){width="3.7916666666666665in"
-> height="0.4472211286089239in"}
+![](./img/image56.jpeg)
 
--   ![](./media/image109.jpeg){width="3.75in"
-    height="0.44722222222222224in"}统计单词数
+-   统计行数
 
-![](./media/image110.jpeg){width="3.7708333333333335in"
-height="0.4583333333333333in"}
+![](./img/image57.jpeg)
 
-高级软件人才培训专家
+* 统计单词数
 
-#### 管道符
+![](./img/image58.jpeg)
 
-> ![](./media/image111.jpeg){width="6.8284580052493435in"
-> height="0.7604166666666666in"}![](./media/image112.png){width="3.8625in"
-> height="1.7097222222222221in"}学习了 grep
-> 命令后，我们在来学习一个新的特殊符号，管道符：
-> \|管道符的含义是：将管道符左边命令的结果，作为右边命令的输入
->
-> 如上图：
+## 管道符
+
+学习了 grep 命令后，我们再来学习一个新的特殊符号，管道符：\|
+
+管道符的含义是：将管道符左边命令的结果，作为右边命令的输入
+
+![](./img/image59.jpeg)
+
+如上图：
 
 -   cat itheima.txt 的输出结果（文件内容）
 
 -   作为右边 grep 命令的输入（被过滤文件）
 
-#### 管道符
-
-> 管道符的应用非常多
+管道符的应用非常多
 
 -   ls \| grep Desktop ，过滤 ls 的结果
 
--   ![](./media/image113.jpeg){width="3.7805555555555554in"
-    height="0.4472211286089239in"}find / -name "test" \| grep
-    "/usr/lib64" ，过滤结果，只找路径带有 /usr/lib64 的结果
 
--   ![](./media/image114.jpeg){width="5.75in"
-    height="1.4472222222222222in"}cat itheima.txt \| grep itcast \| grep
-    itheima ，可以嵌套使用哦
+![](./img/image60.jpeg)
 
+-   find / -name "test" \| grep "/usr/lib64" ，过滤结果，只找路径带有 /usr/lib64 的结果
+
+
+![](./img/image61.jpeg)
+
+-   cat itheima.txt \| grep itcast \| grep itheima ，可以嵌套使用哦
     -   cat itheima.txt 的结果给 grep itcast 使用
 
     -   cat itheima.txt \| grep itcast 的结果给 grep itheima 使用
 
-![](./media/image115.jpeg){width="6.593054461942257in"
-height="0.4375in"}
+![](./img/image62.jpeg)
+
+## 总结
 
 1.  grep 命令
 
-    -   ![](./media/image15.png)![](./media/image100.png){width="2.5722222222222224in"
-        > height="0.2916666666666667in"}从文件中通过关键字过滤文件行
-
-    -   语法：
+    -   从文件中通过关键字过滤文件行
+        
+    -   语法：`grep [-n] 关键字 文件路径`
 
     -   选项 -n ，可选，表示在结果中显示匹配的行的行号。
 
@@ -958,212 +919,169 @@ height="0.4375in"}
     -   参数，文件路径，必填，表示要过滤内容的文件路径，可作为管道符的输入
 
 2.  wc 命令
-
-    -   语法：
-
-    -   ![](./media/image105.png){width="2.6041666666666665in"
-        > height="0.30138779527559056in"}不带选项默认统计：行数、单词数、字节数
-
-    -   -c 字节数、 -m 字符数、 -l 行数、 -w 单词数
-
-    -   参数，被统计的文件路径，可作为管道符的输入
+    * 命令统计文件的行数、单词数量、字节数、字符数等
+    * 语法：`wc [-c -m -l -w] 文件路径`
+    * 不带选项默认统计：行数、单词数、字节数
+    * -c 字节数、 -m 字符数、 -l 行数、 -w 单词数
+    * 参数，被统计的文件路径，可作为管道符的输入
 
 3.  管道符 \|
 
     -   将管道符左边命令的结果，作为右边命令的输入
 
-> ![](./media/image17.png)课后练习
->
-> 对创建的 test.txt 进行统计
->
-> 请使用 cat 、 grep 、管道符、 wc 命令组合，进行统计：
+课后练习：对创建的 test.txt 进行统计
 
--   统计文件中带有 itcast 关键字的有几行 cat test.txt \| grep itcast \|
-    > wc -l
+请使用 cat 、 grep 、管道符、 wc 命令组合，进行统计：
 
--   统计文件中带有 itheima 关键字的结果中有多少个单词 cat test.txt \|
-    > grep itheima \| wc -w
+-   统计文件中带有 itcast 关键字的有几行
+    -   cat test.txt \| grep itcast \| wc -l
 
-# ![](./media/image7.png)目录
+-   统计文件中带有 itheima 关键字的结果中有多少个单词
+    -   cat test.txt \| grep itheima \| wc -w
 
-## Contents
 
--   Linux 的目录结构
+# 十、echo、tail和重定向符
 
--   ![](./media/image6.png)Linux 命令入门
+## echo 命令
 
--   目录切换相关命令 (cd/pwd)
+可以使用 echo 命令在命令行内输出指定内容
 
--   相对路径、绝对路径和特殊路径符
+语法：`echo 输出的内容`
 
--   创建目录命令 (mkdir)
+-   无需选项，只有一个参数，表示要输出的内容，复杂内容可以用""包围
 
--   文件操作命令 part1(touch 、 cat 、 more ）
 
--   文件操作命令 part2(cp 、 mv 、 rm ）
-
--   查找命令 (which 、 find ）
-
--   grep 、 wc 和管道符
-
--   echo 、 tail 和重定向符
-
--   vi 编辑器
-
-1.  掌握使用 echo 命令输出内容
-
-# ![](./media/image8.png)学习目标
-
-### Learning Objectives
-
-2.  掌握反引号 \` 的使用
-
-3.  掌握 tail 命令跟踪文件更改
-
-4.  掌握重定向符号的使用
-
-#### echo 命令
-
-> ![](./media/image116.png){width="1.5416666666666667in"
-> height="0.2708333333333333in"}可以使用 echo
-> 命令在命令行内输出指定内容语法：
-
--   无需选项，只有一个参数，表示要输出的内容，复杂内容可以用""包围演示：
+演示：
 
 -   在终端上显示： Hello Linux
 
--   ![](./media/image117.jpeg){width="3.7291666666666665in"
-    height="0.4791666666666667in"}带有空格或\\
-    等特殊符号，建议使用双引号包围
+![](./img/image63.jpeg)
 
-    -   因为不包围的话，空格后很容易被识别为参数 2 ，尽管echo
-        不受影响，但是要养成习惯哦
+-   带有空格或\\ 等特殊符号，建议使用双引号包围
+    -   因为不包围的话，空格后很容易被识别为参数 2 ，尽管echo 不受影响，但是要养成习惯哦
 
-![](./media/image118.jpeg){width="3.883252405949256in"
-height="0.46406167979002627in"}
+![](./img/image64.jpeg)
 
-#### 反引号 \`
+## 反引号 \`
 
-> 看一下如下命令： echo pwd
->
-> ![](./media/image119.jpeg){width="2.8638877952755903in"
-> height="0.4472211286089239in"}本意是想，输出当前的工作路径，但是 pwd
-> 被作为普通字符输出了。我们可以通过将命令用反引号（通常也称之为飘号）
-> \` 将其包围
->
-> 被\` 包围的内容，会被作为命令执行，而非普通字符
+看一下如下命令： echo pwd
 
-![](./media/image120.jpeg){width="2.9638188976377955in"
-height="0.42281167979002626in"}
+![](./img/image65.jpeg)
 
-#### 重定向符
+本意是想，输出当前的工作路径，但是 pwd 被作为普通字符输出了。
 
-> 我们再来学习两个特殊符号，重定向符： \> 和 \>\>
+我们可以通过将命令用反引号（通常也称之为飘号)\` 将其包围
+
+被\` 包围的内容，会被作为命令执行，而非普通字符
+
+![](./img/image66.jpeg)
+
+## 重定向符
+
+我们再来学习两个特殊符号，重定向符： \> 和 \>\>
 
 -   \> ，将左侧命令的结果，覆盖写入到符号右侧指定的文件中
 
--   \>\> ，将左侧命令的结果，追加写入到符号右侧指定的文件中演示：
+-   \>\> ，将左侧命令的结果，追加写入到符号右侧指定的文件中
+
+
+演示：
 
 -   echo "Hello Linux" \> itheima.txt
 
--   ![](./media/image121.jpeg){width="4.356944444444444in"
-    height="0.5930555555555556in"}echo "Hello itheima" \> itheima.txt
-    ，再次执行，覆盖新内容
+![](./img/image67.jpeg)
 
--   echo "Hello itcast" \>\> itheima.txt ，再次执行，使用 \>\>
-    追加新内容
+* echo "Hello itheima" \> itheima.txt ，再次执行，覆盖新内容
 
-![](./media/image122.jpeg){width="4.737776684164479in"
-height="0.6197911198600174in"}
+![](./img/image68.jpeg)
 
-![](./media/image123.jpeg){width="5.458713910761155in"
-height="0.9178116797900262in"}
+-   echo "Hello itcast" \>\> itheima.txt ，再次执行，使用 \>\> 追加新内容
 
-#### tail 命令
+![](./img/image69.jpeg)
 
-> ![](./media/image124.jpeg){width="4.009722222222222in"
-> height="0.4583333333333333in"}使用 tail
-> 命令，可以查看文件尾部内容，跟踪文件的最新更改，语法如下：
+## tail 命令
 
--   参数， Linux 路径，表示被跟踪的文件路径
+使用 tail 命令，可以查看文件尾部内容，跟踪文件的最新更改，语法如下：
 
--   选项， -f ，表示持续跟踪
+`tail [-f -num] Linux路径`
 
--   选项, -num ，表示，查看尾部多少行，不填默认 10 行
+-   参数 Linux 路径，表示被跟踪的文件路径
 
-#### tail 命令
+-   选项 -f ，表示持续跟踪
 
--   ![](./media/image125.jpeg){width="6.293055555555555in"
-    height="1.4680544619422573in"}查看 /var/log/vmware-network.log
-    文件的尾部 10 行： tail /var/log/vmware-network.log
+-   选项 -num ，表示查看尾部多少行，不填默认 10 行
 
--   查看 /var/log/vmware-network.log 文件的尾部 3 行： tail -3
-    /var/log/vmware-network.log
+演示：
 
-![](./media/image126.jpeg){width="8.351515748031495in"
-height="0.7031244531933508in"}
+* 查看 /var/log/vmware-network.log 文件的尾部 10 行： tail /var/log/vmware-network.log
 
-#### tail 持续跟踪文件更改
+![](./img/image70.jpeg)
+
+-   查看 /var/log/vmware-network.log 文件的尾部 3 行： tail -3 /var/log/vmware-network.log
+
+![](./img/image71.jpeg)
 
 > 使用 -f 选项，可以持续跟踪文件更改
 
--   ![](./media/image127.jpeg){width="2.2194444444444446in"
-    height="0.6013888888888889in"}复制一个新的 FinalShell 的标签
+* 复制一个新的 FinalShell 的标签
+
+![](./img/image72.jpeg)
 
 -   在第一个标签中，执行： touch test.txt ，创建一个 test.txt 文件
 
 -   在第一个标签中，执行： tail -f test.txt ，持续跟踪文件更改
 
--   在第二个标签中，多次执行： echo " 内容" \>\> test.txt
-    ，向文件追加内容
+-   在第二个标签中，多次执行： echo "内容" \>\> test.txt，向文件追加内容
 
 -   观察第一个标签的变化
 
-    1.  ![](./media/image116.png){width="1.5416655730533684in"
-        > height="0.2708333333333333in"}echo 命令
 
-    -   ![](./media/image15.png)可以使用 echo 命令在命令行内输出指定内容
+## 总结
 
-    -   语法：
+1.  echo 命令
 
-    -   无需选项，只有一个参数，表示要输出的内容，复杂内容可以用""包围
+-   可以使用 echo 命令在命令行内输出指定内容
 
-    2.  \` 反引号符
+-   语法：`echo 输出的内容`
 
-    -   被\` 包围的内容，会被作为命令执行，而非普通字符
+-   无需选项，只有一个参数，表示要输出的内容，复杂内容可以用 " " 包围
 
-    -   \> ，将左侧命令的结果，覆盖写入到符号右侧指定的文件中
+2.  \` 反引号符
 
-    -   \>\> ，将左侧命令的结果，追加写入到符号右侧指定的文件中
+-   被\` 包围的内容，会被作为命令执行，而非普通字符
 
-> 4\. tail 命令
+
+3. 重定向符
+
+-   \> ，将左侧命令的结果，覆盖写入到符号右侧指定的文件中
+
+-   \>\> ，将左侧命令的结果，追加写入到符号右侧指定的文件中
+
+4. tail 命令
 
 -   查看文件尾部内容，并可以持续跟踪
 
--   ![](./media/image124.jpeg){width="4.009722222222222in"
-    > height="0.4583333333333333in"}语法：
-
+-   语法：`tail [-f -num] Linux路径`
+    
 -   -f ：持续跟踪， -num ：启动的时候查看尾部多少行，默认 10
 
 -   Linux 路径，表示被查看的文件
 
-> ![](./media/image17.png)课后练习
+课后练习
 
--   请使用 echo 并配合反引号，输出内容：我当前的工作目录是： \`
-    > 具体的工作目录路径 \`
-
--   并结合重定向符，将输出结果覆盖写入 work.txt 文件 echo \"
-    > 我当前的工作目录是： \`pwd\`\" \> work.txt
+-   请使用 echo 并配合反引号，输出内容：我当前的工作目录是： \`具体的工作目录路径 \`
+    
+-   并结合重定向符，将输出结果覆盖写入 work.txt 文件 
+    -   echo \"我当前的工作目录是： \`pwd\`\"  \>  work.txt
 
 -   请使用 echo 输出任意内容并追加到 work.txt 文件中
 
--   通过tail 命令持续跟踪文件内容更改 echo \" 内容 \" \>\> work.txt
+-   通过tail 命令持续跟踪文件内容更改
+    -   echo \" 内容 \" \>\> work.txt
+    -   tail -f work.txt
 
-> tail -f work.txt
 
-# ![](./media/image7.png)目录
-
-## Contents
+# 十一、vi编辑器
 
 -   Linux 的目录结构
 
@@ -1177,7 +1095,7 @@ height="0.7031244531933508in"}
 
 -   文件操作命令 part1(touch 、 cat 、 more ）
 
--   文件操作命令 part2(cp 、 mv 、 rm ）
+-   文件操作命令 part2(cp 、 m  v 、 rm ）
 
 -   查找命令 (which 、 find ）
 
