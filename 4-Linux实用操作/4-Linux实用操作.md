@@ -78,13 +78,457 @@
 
 # 二、软件安装
 
+## Linux 系统的应用商店
+
+操作系统安装软件有许多种方式，一般分为：
+
+-   下载安装包自行安装
+
+    -   如 win 系统使用 exe 文件、 msi 文件等
+
+    -   如 mac 系统使用 dmg 文件、 pkg 文件等
+
+-   系统的应用商店内安装
+
+    -   如win 系统有 Microsoft Store 商店
+
+    -   如mac 系统有 AppStore 商店
+
+Linux 系统同样支持这两种方式，我们首先学习使用： Linux 命令行内的"应用商店"， yum 命令安装软件
+
+## yum 命令
+
+yum ： RPM 包软件管理器，用于自动化安装配置 Linux 软件，并可以自动解决依赖问题。
+
+语法：`yum [-y] [install | remove |search] 软件名称`
+
+-   选项： -y ，自动确认，无需手动确认安装或卸载过程
+
+-   install ：安装
+
+-   remove ：卸载
+
+-   search ：搜索
+
+> yum 命令需要 root 权限哦，可以 su 切换到 root ，或使用 sudo 提权。
+>
+> yum 命令需要联网
+
+-   yum \[-y\] install wget ， 通过 yum 命令安装 wget 程序
+
+![](./img/image8.jpeg)
+
+-   yum \[-y\] remove wget ，通过 yum 命令卸载 wget 命令
+
+-   yum search wget ，通过 yum 命令，搜索是否有 wget 安装包
+
+## apt 命令 - 扩展
+
+前面学习的各类 Linux 命令，都是通用的。 但是软件安装， CentOS 系统和 Ubuntu 是使用不同的包管理器。 
+
+CentOS 使用 yum 管理器， Ubuntu 使用 apt 管理器
+
+通过前面学习的 WSL 环境，我们可以得到 Ubuntu 运行环境。
+
+语法：`apt [-y] [install | remove |search] 软件名称`
+
+用法和 yum 一致，同样需要 root 权限
+
+-   apt install wget ，安装 wget
+
+-   apt remove wget ，移除 wget
+
+-   apt search wget ，搜索 wget
+
+
+## 总结
+
+1.  在CentOS 系统中，使用 yum 命令联网管理软件安装
+    * yum 语法：`yum [-y] [install | remove |search] 软件名称`
+
+2.  在 Ubuntu 系统中，使用 apt 命令联网管理软件安装
+    * apt 语法：`apt [-y] [install | remove |search] 软件名称`
+
+
 # 三、systemctl
+
+## systemctl 命令
+
+Linux 系统很多软件（内置或第三方）均支持使用 systemctl 命令控制：启动、停止、开机自启
+
+能够被 systemctl 管理的软件，一般也称之为：服务
+
+语法：`systemctl start | stop | status | enable | disable 服务名`
+
+-   start 启动
+
+-   stop 关闭
+
+-   status 查看状态
+
+-   enable 开启开机自启
+
+-   disable 关闭开机自启
+
+系统内置的服务比较多，比如：
+
+-   NetworkManager ，主网络服务
+
+-   network ，副网络服务
+
+-   firewalld ，防火墙服务
+
+-   sshd ， ssh 服务（ FinalShell 远程登录 Linux 使用的就是这个服务）
+
+现在可以使用 systemctl 去尝试一下，控制这些服务的启动、关闭、自启动啦
+
+除了内置的服务以外，部分第三方软件安装后也可以以 systemctl 进行控制。
+
+-   yum install -y ntp ，安装 ntp 软件
+
+可以通过 ntpd 服务名，配合 systemctl 进行控制
+
+-   yum install -y httpd ，安装 apache 服务器软件
+
+可以通过 httpd 服务名，配合 systemctl 进行控制
+
+> 部分软件安装后没有自动集成到 systemctl 中，我们可以手动添加。这部分内容在后续章节和大家详细讲解。
+
+## 总结
+
+1. systemctl 命令的作用是？
+
+可以控制软件（服务）的启动、关闭、开机自启动
+
+-   系统内置服务均可被 systemctl 控制
+
+-   第三方软件，如果自动注册了可以被 systemctl 控制
+
+-   第三方软件，如果没有自动注册，可以手动注册（后续学习）
+
+2. 语法
+
+`systemctl start | stop | status | enable | disable 服务名`
 
 # 四、软连接
 
+## ln 命令创建软连接
+
+在系统中创建软链接，可以将文件、文件夹链接到其它位置。
+
+类似Windows 系统中的《快捷方式》
+
+语法：`ln -s 参数1 参数2`
+
+-   -s 选项，创建软连接
+
+-   参数 1 ：被链接的文件或文件夹
+
+-   参数 2 ：要链接去的目的地
+
+
+实例：
+
+- ```
+  ln -s /etc/yum.conf ~/yum.conf
+  ```
+
+- ```
+  ln -s /etc/yum ~/yum
+  ```
+
+![](./img/image9.jpeg)
+
+## 总结
+
+1. 什么是软连接？
+
+可以将文件、文件夹链接到其他位置
+
+链接只是一个指向，并不是物理移动，类似 Windows 系统的快捷方式
+
+2. 软连接的使用语法
+
+`ln -s 参数1 参数2`
+
+-   -s 选项，创建软连接
+
+-   参数 1 ：被链接的文件或文件夹
+
+-   参数 2 ：要链接去的目的地
+
 # 五、日期、时区
 
+## date 命令
+
+通过date 命令可以在命令行中查看系统的时间
+
+语法：`date [-d] [+格式化字符串]`
+
+-   -d 按照给定的字符串显示日期，一般用于日期计算
+
+-   格式化字符串：通过特定的字符串标记，来控制显示的日期格式
+
+    -   %Y：年
+
+    -   %y：年份后两位数字 (00..99)
+
+    -   %m：月份 (01..12)
+
+    -   %d：日 (01..31)
+
+    -   %H：小时 (00..23)
+
+    -   %M：分钟 (00..59)
+
+    -   %S：秒 (00..60)
+
+    -   %s：自 1970-01-01 00:00:00 UTC 到现在的秒数
+
+演示：
+
+-   使用date 命令本体，无选项，直接查看时间
+
+![](./img/image10.jpeg)
+
+可以看到这个格式非常的不习惯。我们可以通过格式化字符串自定义显示格式
+
+-   按照 2022-01-01 的格式显示日期
+
+
+![](./img/image11.jpeg)
+
+* 按照 2022-01-01 10:00:00 的格式显示日期
+
+![](./img/image12.jpeg)
+
+如上，由于中间带有空格，所以使用双引号包围格式化字符串，作为整体。
+
+## date 命令进行日期加减
+
+-d 选项，可以按照给定的字符串显示日期，一般用于日期计算
+
+![](./img/image13.png)
+
+其中支持的时间标记为：
+
+-   year：年
+
+-   month：月
+
+-   day：天
+
+-   hour：小时
+
+-   minute：分钟
+
+-   second：秒
+
+> -d 选项可以和格式化字符串配合一起使用
+
+## 修改 Linux 时区
+
+细心的同学可能会发现，通过 date 查看的日期时间是不准确的，这是因为：系统默认时区非中国的东八区。
+
+使用 root 权限，执行如下命令，修改时区为东八区时区
+
+```sh
+rm -f /etc/localtime
+sudo ln -s /user/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+
+将系统自带的 localtime 文件删除，并将 /usr/share/zoneinfo/Asia/Shanghai 文件链接为 localtime 文件即可
+
+## ntp 程序
+
+我们可以通过 ntp 程序自动校准系统时间
+
+安装ntp ： yum -y install ntp
+
+启动并设置开机自启：
+
+-   systemctl start ntpd
+
+-   systemctl enable ntpd
+
+当ntpd 启动后会定期的帮助我们联网校准系统的时间
+
+-   也可以手动校准（需 root 权限）： ntpdate -u ntp.aliyun.com
+
+通过阿里云提供的服务网址配合 ntpdate（安装 ntp 后会附带这个命令）命令自动校准。
+
+![](./img/image14.jpeg)
+
+## 总结
+
+1. date 命令的作用和用法
+
+date 命令可以查看日期时间，并可以格式化显示形式以及做日期计算
+
+语法：`date [-d] [+格式化字符串]`
+
+-   %Y：年
+
+-   %y：年份后两位数字 (00..99)
+
+-   %m：月份 (01..12)
+
+-   %d：日 (01..31)
+
+-   %H：小时 (00..23)
+
+-   %M：分钟 (00..59)
+
+-   %S：秒 (00..60)
+
+-   %s：自 1970-01-01 00:00:00 UTC 到现在的秒数
+
+2. 如何修改 Linux 时区
+
+```sh
+rm -f /etc/localtime
+sudo ln -s /user/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+
+3. ntp 的作用
+
+可以自动联网同步时间，也可以通过`ntpdate -u ntp.aliyun.com`手动校准时间
+
 # 六、IP地址、主机名
+
+## IP 和主机名
+
+### IP 地址
+
+每一台联网的电脑都会有一个地址，用于和其它计算机进行通讯
+
+IP 地址主要有 2 个版本， V4 版本和 V6 版本（ V6 很少用，课程暂不涉及）
+
+IPv4 版本的地址格式是： a.b.c.d ，其中abcd 表示 0\~255 的数字，如 192.168.88.101 就是一个标准的 IP 地址
+
+可以通过命令：`ifconfig` ，查看本机的 ip 地址，如无法使用 ifconfig 命令，可以安装： yum -y install net-tools
+
+![](./img/image15.jpeg)
+
+### 特殊IP 地址
+
+除了标准的IP 地址以外，还有几个特殊的 IP 地址需要我们了解：
+
+-   127.0.0.1 ，这个 IP 地址用于指代本机
+
+![](./img/image16.jpeg)
+
+-   0.0.0.0 ，特殊 IP 地址
+
+    -   可以用于指代本机
+
+    -   可以在端口绑定中用来确定绑定关系（后续讲解）
+
+    -   在一些IP 地址限制中，表示所有 IP 的意思，如放行规则设置为 0.0.0.0 ，表示允许任意 IP 访问
+
+### 主机名
+
+每一台电脑除了对外联络地址（ IP 地址）以外，也可以有一个名字，称之为主机名
+
+无论是Windows 或 Linux 系统，都可以给系统设置主机名
+
+-   Windows 系统主机名
+
+![](./img/image17.jpeg)
+
+* Linux 系统主机名
+
+![](./img/image18.jpeg)
+
+### 在 Linux 中修改主机名
+
+-   可以使用命令： hostname 查看主机名
+
+![](./img/image18.jpeg)
+
+-   可以使用命令： hostnamectl set-hostname 主机名，修改主机名（需 root）
+
+![](./img/image19.jpeg)
+
+* 重新登录 FinalShell 即可看到主机名已经正确显示
+
+![](./img/image20.jpeg)
+
+### 域名解析
+
+IP 地址实在是难以记忆，有没有什么办法可以通过主机名或替代的字符地址去代替数字化的 IP 地址呢？
+
+实际上，我们一直都是通过字符化的地址去访问服务器，很少指定 IP 地址
+
+比如，我们在浏览器内打开： [www.baidu.com](http://www.baidu.com/)，会打开百度的网址
+
+其中， [www.baidu.com](http://www.baidu.com/) 是百度的网址，我们称之为：域名
+
+不是说通过 IP 地址才能访问服务器吗？为什么域名这一串好记的字符，也可以呢？
+
+这一切，都是域名解析帮助我们解决的。
+
+访问[www.baidu.com](http://www.baidu.com/) 的流程如下：
+
+![](./img/image21.jpeg)
+
+即：
+
+-   先查看本机的记录（私人地址本)
+    
+    -   Windows 看： C:\\Windows\\System32\\drivers\\etc\\hosts
+    
+    -   Linux 看： /etc/hosts
+    
+-   再联网去 DNS 服务器（如 114.114.114.114 ， 8.8.8.8 等）询问
+
+### 配置主机名映射
+
+比如，我们 FinalShell 是通过 IP 地址连接到的 Linux 服务器，那有没有可能通过域名（主机名）连接呢？
+
+可以，我们只需要在 Windows 系统的： C:\\Windows\\System32\\drivers\\etc\\hosts 文件中配置记录即可
+
+![](./img/image22.jpeg)
+
+
+
+![](img/image23.png)
+
+
+
+![](img/image24.png)
+
+
+
+![](img/image25.png)
+
+
+
+![](img/image26.png)
+
+### 总结
+
+1. 什么是 IP 地址，有什么作用？
+
+IP 地址是联网计算机的网络地址，用于在网络中进行定位
+
+格式是： a.b.c.d，其中abcd 是 0\~255 的数字
+
+特殊IP 有： 127.0.0.1 ，本地回环 IP ，表示本机。
+
+0.0.0.0 ：也可表示本机，也可以在一些白名单中表示任意 IP
+
+2. 什么是主机名？
+
+主机名就是主机的名称，用于标识一个计算机
+
+3. 什么是域名解析（主机名映射）
+
+可以通过主机名找到对应计算机的 IP 地址，这就是主机名映射（域名解析）
+
+先通过系统本地的记录去查找，如果找不到就联网去公开 DNS 服务器去查找
+
+## 虚拟机配置固定 IP
 
 # 七、网络传输
 
@@ -97,539 +541,6 @@
 # 十一、上传、下载
 
 # 十二、压缩、解压
-
-
-
-> Learning Objectives
-
-1.  掌握使用 yum 为CentOS 系统安装软件
-
-2.  掌握使用 apt 为 Ubuntu 安装软件（扩展）
-
-## Linux 系统的应用商店 {#linux-系统的应用商店 .unnumbered}
-
-> 操作系统安装软件有许多种方式，一般分为：
-
--   下载安装包自行安装
-
-    -   **如win 系统使用 exe 文件、 msi 文件等**
-
-    -   **如mac 系统使用 dmg 文件、 pkg 文件等**
-
--   系统的应用商店内安装
-
-    -   **如win 系统有 Microsoft Store 商店**
-
-    -   **如mac 系统有 AppStore 商店**
-
-> Linux 系统同样支持这两种方式，我们首先，先来学习使用： Linux
-> 命令行内的"应用商店"， yum 命令安装软件
-
-## yum 命令 {#yum-命令 .unnumbered}
-
-> ![](./media/image18.jpeg){width="5.425in"
-> height="0.308332239720035in"}yum ： RPM
-> 包软件管理器，用于自动化安装配置 Linux
-> 软件，并可以自动解决依赖问题。语法：
-
--   选项： -y ，自动确认，无需手动确认安装或卸载过程
-
--   install ：安装
-
--   remove ：卸载
-
--   search ：搜索
-
-> yum 命令需要 root 权限哦，可以 su 切换到 root ，或使用 sudo 提权。 yum
-> 命令需要联网
-
-## yum 命令 {#yum-命令-1 .unnumbered}
-
--   ![](./media/image19.jpeg){width="4.851388888888889in"
-    height="1.320832239720035in"}yum \[-y\] install wget ， 通过 yum
-    命令安装 wget 程序
-
--   yum \[-y\] remove wget ，通过 yum 命令卸载 wget 命令
-
--   yum search wget ，通过 yum 命令，搜索是否有 wget 安装包
-
-## apt 命令 - 扩展 {#apt-命令---扩展 .unnumbered}
-
-> 前面学习的各类 Linux 命令，都是通用的。 但是软件安装， CentOS 系统和
-> Ubuntu 是使用不同的包管理器。 CentOS 使用 yum 管理器， Ubuntu 使用 apt
-> 管理器
->
-> 通过前面学习的 WSL 环境，我们可以得到 Ubuntu 运行环境。
->
-> ![](./media/image20.jpeg){width="5.408333333333333in"
-> height="0.34999890638670167in"}语法：
->
-> 用法和 yum 一致，同样需要 root 权限
-
--   apt install wget ，安装 wget
-
--   apt remove wget ，移除 wget
-
--   apt search wget ，搜索 wget
-
-    1.  ![](./media/image17.png)![](./media/image18.jpeg){width="5.425in"
-        > height="0.308332239720035in"}在CentOS 系统中，使用 yum
-        > 命令联网管理软件安装
-
-    2.  在 Ubuntu 系统中，使用 apt 命令联网管理软件安装 apt 语法：
-
-> ![](./media/image20.jpeg){width="5.408333333333333in"
-> height="0.34999890638670167in"}
-
-# ![](./media/image6.png)![](./media/image7.png)目录 {#目录-2 .unnumbered}
-
-> Contents
-
-# ![](./media/image8.png)学习目标 {#学习目标-2 .unnumbered}
-
-> Learning Objectives
-
-1.  掌握使用 systemctl 命令控制软件的启动和关闭
-
-## systemctl 命令 {#systemctl-命令 .unnumbered}
-
-> Linux 系统很多软件（内置或第三方）均支持使用 systemctl
-> 命令控制：启动、停止、开机自启能够被 systemctl
-> 管理的软件，一般也称之为：服务
->
-> ![](./media/image21.jpeg){width="6.941665573053369in"
-> height="0.308332239720035in"}语法：
->
-> 系统内置的服务比较多，比如：
-
--   NetworkManager ，主网络服务
-
--   network ，副网络服务
-
--   firewalld ，防火墙服务
-
--   sshd ， ssh 服务（ FinalShell 远程登录 Linux 使用的就是这个服务）
-
-> 现在可以使用 systemctl 去尝试一下，控制这些服务的启动、关闭、自启动啦
-
--   start 启动
-
--   stop 关闭
-
--   status 查看状态
-
--   enable 开启开机自启
-
--   disable 关闭开机自启
-
-## systemctl 命令 {#systemctl-命令-1 .unnumbered}
-
-> 除了内置的服务以外，部分第三方软件安装后也可以以 systemctl 进行控制。
-
--   yum install -y ntp ，安装 ntp 软件
-
-> 可以通过 ntpd 服务名，配合 systemctl 进行控制
-
--   yum install -y httpd ，安装 apache 服务器软件可以通过 httpd
-    服务名，配合 systemctl 进行控制
-
-> 部分软件安装后没有自动集成到 systemctl
-> 中，我们可以手动添加。这部分内容在后续章节和大家详细讲解。
-
-### ![](./media/image17.png)systemctl 命令的作用是？
-
-> 可以控制软件（服务）的启动、关闭、开机自启动
-
--   系统内置服务均可被 systemctl 控制
-
--   第三方软件，如果自动注册了可以被 systemctl 控制
-
--   第三方软件，如果没有自动注册，可以手动注册（后续学习）
-
-1.  语法
-
-![](./media/image21.jpeg){width="6.941666666666666in"
-height="0.308332239720035in"}
-
-# ![](./media/image6.png)![](./media/image7.png)目录 {#目录-3 .unnumbered}
-
-> Contents
-
-# ![](./media/image8.png)学习目标 {#学习目标-3 .unnumbered}
-
-> Learning Objectives
-
-1.  掌握使用 ln 命令创建软连接
-
-![](./media/image22.png){width="1.9972211286089239in"
-height="2.2138877952755904in"}
-
-## ln 命令创建软连接 {#ln-命令创建软连接 .unnumbered}
-
-> 在系统中创建软链接，可以将文件、文件夹链接到其它位置。
->
-> ![](./media/image23.jpeg){width="2.05in"
-> height="0.34999890638670167in"}类似Windows 系统中的《快捷方式》语法：
-
--   -s 选项，创建软连接
-
--   参数 1 ：被链接的文件或文件夹
-
--   参数 2 ：要链接去的目的地实例：
-
--   ln -s /etc/yum.conf \~/yum.conf
-
--   ln -s /etc/yum \~/yum
-
-![](./media/image24.jpeg){width="7.641666666666667in"
-height="0.4249989063867017in"}
-
-### ![](./media/image17.png)什么是软连接？
-
-> 链接只是一个指向，并不是物理移动，类似 Windows 系统的快捷方式
-
-1.  软连接的使用语法
-
-![](./media/image23.jpeg)
-
-# ![](./media/image6.png)![](./media/image7.png)目录 {#目录-4 .unnumbered}
-
-> Contents
-
-# ![](./media/image8.png)学习目标 {#学习目标-4 .unnumbered}
-
-> Learning Objectives
-
-1.  掌握 date 命令查看日期时间
-
-2.  掌握修改 Linux 系统的时区
-
-3.  掌握使用 ntp 进行时间同步和校准
-
-## date 命令 {#date-命令 .unnumbered}
-
-> 通过date 命令可以在命令行中查看系统的时间
->
-> ![](./media/image26.png){width="2.8333333333333335in"
-> height="0.25833333333333336in"}语法：
-
--   -d 按照给定的字符串显示日期，一般用于日期计算
-
--   格式化字符串：通过特定的字符串标记，来控制显示的日期格式
-
-    -   **%Y 年**
-
-    -   **%y 年份后两位数字 (00..99)**
-
-    -   **%m 月份 (01..12)**
-
-    -   **%d 日 (01..31)**
-
-    -   **%H 小时 (00..23)**
-
-    -   **%M 分钟 (00..59)**
-
-    -   **%S 秒 (00..60)**
-
-    -   ![](./media/image27.png){width="1.4527777777777777in"
-        > height="1.8055555555555556in"}**%s 自 1970-01-01 00:00:00 UTC
-        > 到现在的秒数**
-
-## date 命令 {#date-命令-1 .unnumbered}
-
--   ![](./media/image28.jpeg){width="3.8499989063867015in"
-    height="0.5in"}使用date 命令本体，无选项，直接查看时间
-
-> 可以看到这个格式非常的不习惯。我们可以通过格式化字符串自定义显示格式
-
--   按照 2022-01-01 的格式显示日期
-
--   ![](./media/image29.jpeg){width="3.45in"
-    height="0.43333333333333335in"}按照 2022-01-01 10:00:00
-    的格式显示日期
-
-> ![](./media/image30.jpeg){width="4.641665573053368in"
-> height="1.2in"}![](./media/image31.png){width="1.4291655730533683in"
-> height="1.8430544619422573in"}如上，由于中间带有空格，所以使用双引号包围格式化字符串，作为整体。
-
-## date 命令进行日期加减 {#date-命令进行日期加减 .unnumbered}
-
--   ![](./media/image32.png){width="2.675in"
-    height="0.9916666666666667in"}-d
-    选项，可以按照给定的字符串显示日期，一般用于日期计算
-
--   其中支持的时间标记为：
-
-    -   **year 年**
-
-    -   **month 月**
-
-    -   **day 天**
-
-    -   **hour 小时**
-
-    -   **minute 分钟**
-
-    -   **second 秒**
-
--   ![](./media/image33.png){width="1.85in"
-    height="2.2958333333333334in"}-d 选项可以和
-    格式化字符串配合一起使用哦
-
-高级软件人才培训专家
-
-![](./media/image34.png){width="1.4666666666666666in"
-height="1.8277777777777777in"}
-
-## 修改 Linux 时区 {#修改-linux-时区 .unnumbered}
-
-> 细心的同学可能会发现，通过 date
-> 查看的日期时间是不准确的，这是因为：系统默认时区非中国的东八区。
->
-> 使用 root 权限，执行如下命令，修改时区为东八区时区
-
-![](./media/image35.jpeg){width="7.266666666666667in"
-height="0.5833333333333334in"}
-
-> 将系统自带的 localtime 文件删除，并将
-> /usr/share/zoneinfo/Asia/Shanghai 文件链接为 localtime 文件即可
-
-## ntp 程序 {#ntp-程序 .unnumbered}
-
-> 我们可以通过 ntp 程序自动校准系统时间安装ntp ： yum -y install ntp
->
-> 启动并设置开机自启：
-
--   systemctl start ntpd
-
--   systemctl enable ntpd
-
-> 当ntpd 启动后会定期的帮助我们联网校准系统的时间
-
--   也可以手动校准（需 root 权限）： ntpdate -u ntp.aliyun.com
-
-> ![](./media/image36.png){width="1.273611111111111in"
-> height="1.5888888888888888in"}通过阿里云提供的服务网址配合 ntpdate
-> （安装 ntp 后会附带这个命令）命令自动校准
-
-![](./media/image37.jpeg){width="8.783333333333333in" height="0.475in"}
-
-### ![](./media/image17.png)![](./media/image26.png){width="2.8333333333333335in" height="0.25833333333333336in"}![](./media/image38.png){width="3.015277777777778in" height="1.6805544619422572in"}date 命令的作用和用法
-
-> date 命令可以查看日期时间，并可以格式化显示形式以及做日期计算语法：
-
-### ![](./media/image35.jpeg){width="7.266666666666667in" height="0.5833333333333334in"}如何修改 Linux 时区
-
-高级软件人才培训专家
-
-# ![](./media/image6.png)目录 {#目录-5 .unnumbered}
-
-> Contents
-
--   各类小技巧（快捷键）
-
--   ![](./media/image7.png)软件安装
-
--   systemctl
-
--   软连接
-
--   日期、时区
-
--   IP 地址、主机名
-
--   网络传输
-
--   进程管理
-
--   主机状态
-
--   环境变量
-
--   上传、下载
-
--   压缩、解压
-
-> IP 和主机名
->
-> 虚拟机配置固定 IP
-
-# ![](./media/image8.png)学习目标 {#学习目标-5 .unnumbered}
-
-> Learning Objectives
-
-1.  掌握什么是 IP 地址
-
-2.  掌握什么是主机名
-
-3.  掌握什么是域名解析
-
-## IP 地址 {#ip-地址 .unnumbered}
-
-> 每一台联网的电脑都会有一个地址，用于和其它计算机进行通讯
->
-> IP 地址主要有 2 个版本， V4 版本和 V6 版本（ V6 很少用，课程暂不涉及）
->
-> IPv4 版本的地址格式是： a.b.c.d ，其中abcd 表示 0\~255 的数字，如
-> 192.168.88.101 就是一个标准的 IP 地址
->
-> ![](./media/image39.png){width="1.4375in"
-> height="1.7361111111111112in"}可以通过命令： ifconfig ，查看本机的 ip
-> 地址，如无法使用 ifconfig 命令，可以安装： yum -y install net-tools
-
-![](./media/image40.jpeg){width="8.0in" height="2.2in"}
-
-高级软件人才培训专家
-
-![](./media/image41.png)
-
-## 特殊IP 地址 {#特殊ip-地址 .unnumbered}
-
-> 除了标准的IP 地址以外，还有几个特殊的 IP 地址需要我们了解：
-
--   ![](./media/image42.jpeg){width="3.533332239720035in"
-    height="1.9152777777777779in"}127.0.0.1 ，这个 IP 地址用于指代本机
-
--   0.0.0.0 ，特殊 IP 地址
-
-    -   可以用于指代本机
-
-    -   可以在端口绑定中用来确定绑定关系（后续讲解）
-
-    -   在一些IP 地址限制中，表示所有 IP 的意思，如放行规则设置为
-        > 0.0.0.0 ，表示允许任意 IP 访问
-
-高级软件人才培训专家
-
-![](./media/image43.png)
-
-## 主机名 {#主机名 .unnumbered}
-
-> 每一台电脑除了对外联络地址（ IP
-> 地址）以外，也可以有一个名字，称之为主机名
->
-> 无论是Windows 或 Linux 系统，都可以给系统设置主机名
-
--   ![](./media/image44.jpeg){width="4.552777777777778in"
-    height="1.475in"}Windows 系统主机名
-
-> •
-
-![](./media/image45.jpeg){width="2.6333333333333333in" height="0.5in"}
-
-高级软件人才培训专家
-
-![](./media/image46.png){width="1.4763877952755906in"
-height="1.6722222222222223in"}
-
-## 在 Linux 中修改主机名 {#在-linux-中修改主机名 .unnumbered}
-
--   ![](./media/image45.jpeg){width="2.6333333333333333in"
-    height="0.5in"}可以使用命令： hostname 查看主机名
-
--   可以使用命令： hostnamectl set-hostname 主机名，修改主机名（需 root
-    ）
-
-> ![](./media/image47.jpeg){width="5.033333333333333in" height="0.7in"}•
-
-![](./media/image48.jpeg){width="2.075in"
-height="0.26666557305336835in"}
-
-![](./media/image49.png){width="1.1458333333333333in"
-height="1.6722222222222223in"}
-
-## 域名解析 {#域名解析 .unnumbered}
-
-> IP
-> 地址实在是难以记忆，有没有什么办法可以通过主机名或替代的字符地址去代替数字化的
-> IP 地址呢？实际上，我们一直都是通过字符化的地址去访问服务器，很少指定
-> IP 地址
->
-> 比如，我们在浏览器内打开： [www.baidu.com](http://www.baidu.com/)
-> ，会打开百度的网址
->
-> 其中， [www.baidu.com](http://www.baidu.com/)
-> ，是百度的网址，我们称之为：域名
->
-> ![](./media/image50.png){width="2.35in" height="2.35in"}不是说通过 IP
-> 地址才能访问服务器吗？
->
-> 为什么域名这一串好记的字符，也可以呢？这一切，都是域名解析帮助我们解决的。
-
-## 域名解析 {#域名解析-1 .unnumbered}
-
-> ![](./media/image51.jpeg){width="8.633333333333333in"
-> height="2.8583333333333334in"}访问[www.baidu.com](http://www.baidu.com/)
-> 的流程如下：
->
-> 即：
-
--   ![](./media/image52.png){width="1.5555555555555556in"
-    height="1.7791666666666666in"}先查看本机的记录（私人地址本）
-
-    -   Windows 看： C:\\Windows\\System32\\drivers\\etc\\hosts
-
-    -   Linux 看： /etc/hosts
-
--   再联网去 DNS 服务器（如 114.114.114.114 ， 8.8.8.8 等）询问
-
-## 配置主机名映射 {#配置主机名映射 .unnumbered}
-
-> 比如，我们 FinalShell 是通过 IP 地址连接到的 Linux
-> 服务器，那有没有可能通过域名（主机名）连接呢？可以，我们只需要在
-> Windows 系统的： C:\\Windows\\System32\\drivers\\etc\\hosts
-> 文件中配置记录即可
-
-![](./media/image53.jpeg)高级软件人才培训专家
-
-### ![](./media/image17.png)什么是 IP 地址，有什么作用？
-
-> IP 地址是联网计算机的网络地址，用于在网络中进行定位格式是： a.b.c.d
-> ，其中abcd 是 0\~255 的数字
->
-> 特殊IP 有： 127.0.0.1 ，本地回环 IP ，表示本机。
->
-> 0.0.0.0 ：也可表示本机，也可以在一些白名单中表示任意 IP
-
-### 什么是主机名？
-
-> 主机名就是主机的名称，用于标识一个计算机
-
-### 什么是域名解析（主机名映射）
-
-> 可以通过主机名找到对应计算机的 IP
-> 地址，这就是主机名映射（域名解析）先通过系统本地的记录去查找，如果找不到就联网去公开
-> DNS 服务器去查找
-
-高级软件人才培训专家
-
-# ![](./media/image6.png)目录 {#目录-6 .unnumbered}
-
-> Contents
-
--   各类小技巧（快捷键）
-
--   ![](./media/image7.png)软件安装
-
--   systemctl
-
--   软连接
-
--   日期、时区
-
--   IP 地址、主机名
-
--   网络传输
-
--   进程管理
-
--   主机状态
-
--   环境变量
-
--   上传、下载
-
--   压缩、解压
 
 > IP 和主机名
 >
