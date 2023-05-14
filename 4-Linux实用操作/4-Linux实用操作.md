@@ -530,6 +530,111 @@ IP 地址是联网计算机的网络地址，用于在网络中进行定位
 
 ## 虚拟机配置固定 IP
 
+### 为什么需要固定 IP
+
+当前我们虚拟机的 Linux 操作系统，其 IP 地址是通过 DHCP 服务获取的。
+
+DHCP ：动态获取 IP 地址，即每次重启设备后都会获取一次，可能导致 IP 地址频繁变更
+
+* 原因 1 ：办公电脑 IP 地址变化无所谓，但是我们要远程连接到 Linux 系统，如果 IP 地址经常变化我们就要频繁修改适配很麻烦
+
+* 原因 2 ：在刚刚我们配置了虚拟机 IP 地址和主机名的映射，如果 IP 频繁更改，我们也需要频繁更新映射关系
+
+综上所述，我们需要 IP 地址固定下来，不要变化了。
+
+### 在VMware Workstation 中配置固定 IP
+
+配置固定 IP 需要 2 个大步骤：
+
+1.  在VMware Workstation （或 Fusion ）中配置 IP 地址网关和网段（ IP 地址的范围）
+
+2.  在 Linux 系统中手动修改配置文件，固定 IP
+
+
+首先让我们，先进行第一步，跟随图片进行操作
+
+![](./img/image27.png)
+
+
+
+![](img/image28.png)
+
+
+
+![](img/image29.png)
+
+
+
+![](img/image30.png)
+
+现在进行第二步，在Linux 系统中修改固定 IP
+
+使用vim 编辑 /etc/sysconfig/network-scripts/ifcfg-ens33 文件，填入如下内容
+
+![](./img/image31.jpeg)
+
+执行： systemctl restart network 重启网卡，执行 ifconfig 即可看到 ip 地址固定为 192.168.88.130 了
+
+### 在 VMware Fusion 中配置固定 IP
+
+#### 步骤一：先修改 VMware Fusion 的网络设置
+
+1.  打开 Mac 系统的终端程序，并执行如下命令：
+
+![](./img/image32.jpeg)
+
+2.  在终端内执行： sudo su - ，并输入个人系统密码切换到 root 用户
+
+![](./img/image33.jpeg)
+
+3.  先备份一下文件： 
+
+```sh
+cp /Library/Preferences/VMware\Fusion/networking 
+/Library/Preferences/VMware\Fusion/networking.bakcup
+```
+
+通过vim 编辑器修改文件： 
+
+```sh
+vim /Library/Preferences/VMware\Fusion/networking
+```
+
+![](./img/image34.jpeg)
+
+修改第 11 行为如图内容： 192.168.88.0，并保存退出
+
+4.  备份文件： 
+
+```sh
+cp /Library/Preferences/VMware\Fusion/vmnet8/nat.conf
+/Library/Preferences/VMware\Fusion/vmnet8/nat.conf.backup
+```
+
+修改文件： 
+
+```sh
+vim /Library/Preferences/VMware\Fusion/vmnet8/nat.conf
+```
+
+![](./img/image35.jpeg)
+
+如图所示在 NAT gateway address 下修改 ip 为： 192.168.88.2（这是网关的 IP ），并保存退出
+
+5.  启动VMware Fusion ，进入 Linux 虚拟机
+
+#### 步骤 2 ：在 Linux 中修改固定 IP
+
+-   在虚拟机的图形化页面中，打开终端，使用 su - 切换到 root 用户
+
+![](./img/image36.jpeg)
+
+-   使用vim 编辑 /etc/sysconfig/network-scripts/ifcfg-ens33 文件，填入如下内容
+
+![](./img/image37.jpeg)
+
+-   执行： systemctl restart network 重启网卡，执行 ifconfig 即可看到 ip 地址固定为 192.168.88.130 了
+
 # 七、网络传输
 
 # 八、进程管理
@@ -542,142 +647,9 @@ IP 地址是联网计算机的网络地址，用于在网络中进行定位
 
 # 十二、压缩、解压
 
-> IP 和主机名
->
-> 虚拟机配置固定 IP
 
-# ![](./media/image8.png)学习目标 {#学习目标-6 .unnumbered}
 
-> Learning Objectives
 
-1.  掌握如何在 VMware Workstation 中配置Linux 系统的固定 IP 地址（用于
-    > Windows 系统）
-
-2.  掌握如何在 VMware Fusion 中配置Linux 系统的固定 IP 地址（用于 MacOS
-    > 系统）
-
-## 为什么需要固定 IP {#为什么需要固定-ip .unnumbered}
-
-> 当前我们虚拟机的 Linux 操作系统，其 IP 地址是通过 DHCP 服务获取的。
->
-> DHCP ：动态获取 IP 地址，即每次重启设备后都会获取一次，可能导致 IP
-> 地址频繁变更
->
-> 原因 1 ：办公电脑 IP 地址变化无所谓，但是我们要远程连接到 Linux
-> 系统，如果 IP 地址经常变化我们就要频繁修改适配很麻烦
->
-> 原因 2 ：在刚刚我们配置了虚拟机 IP 地址和主机名的映射，如果 IP
-> 频繁更改，我们也需要频繁更新映射关系
->
-> ![](./media/image58.png){width="1.8097211286089239in"
-> height="2.0388888888888888in"}综上所述，我们需要 IP
-> 地址固定下来，不要变化了。
-
-高级软件人才培训专家
-
-## 在VMware Workstation 中配置固定 IP {#在vmware-workstation-中配置固定-ip .unnumbered}
-
-> 配置固定 IP 需要 2 个大步骤：
-
-1.  在VMware Workstation （或Fusion ）中配置IP 地址网关和网段（ IP
-    地址的范围）
-
-2.  在 Linux 系统中手动修改配置文件，固定
-    IP首先让我们，先进行第一步，跟随图片进行操作
-
-![](./media/image59.png)
-
-![](./media/image62.png){width="2.113888888888889in"
-height="2.4291666666666667in"}高级软件人才培训专家
-
-![](./media/image63.png)
-
-## 在VMware Workstation 中配置固定 IP {#在vmware-workstation-中配置固定-ip-1 .unnumbered}
-
-> 现在进行第二步，在Linux 系统中修改固定 IP
-
--   ![](./media/image64.jpeg){width="4.680555555555555in"
-    height="3.5861100174978127in"}使用vim 编辑
-    /etc/sysconfig/network-scripts/ifcfg-ens33 文件，填入如下内容
-
--   执行： systemctl restart network 重启网卡，执行 ifconfig 即可看到 ip
-    地址固定为 192.168.88.130 了
-
-高级软件人才培训专家
-
-![](./media/image65.png)
-
-## 在VMware Fusion 中配置固定 IP {#在vmware-fusion-中配置固定-ip .unnumbered}
-
-> 步骤一：先修改 VMware Fusion 的网络设置
-
-1.  打开 Mac 系统的终端程序，并执行如下命令：
-
-![](./media/image66.jpeg){width="6.335430883639545in"
-height="3.5633333333333335in"}
-
-高级软件人才培训专家
-
-![](./media/image67.png)
-
-## 在VMware Fusion 中配置固定 IP {#在vmware-fusion-中配置固定-ip-1 .unnumbered}
-
-2.  在终端内执行： sudo su - 并输入个人系统密码切换到 root 用户
-
-![](./media/image68.jpeg){width="1.775in" height="0.7249989063867016in"}
-
-3.  先备份一下文件： cp /Library/Preferences/VMware\\ Fusion/networking
-    /Library/Preferences/VMware\\ Fusion/ne tworking.bakcup
-
-> 通过vim 编辑器修改文件： vim /Library/Preferences/VMware\\
-> Fusion/networking
->
-> ![](./media/image69.jpeg){width="5.404166666666667in"
-> height="2.388888888888889in"}修改第 11 行为如图内容： 192.168.88.0
-> ，并保存退出
-
-高级软件人才培训专家
-
-## 在VMware Fusion 中配置固定 IP {#在vmware-fusion-中配置固定-ip-2 .unnumbered}
-
-4.  备份文件： cp /Library/Preferences/VMware\\ Fusion/vmnet8/nat.conf
-    /Library/Preferences/VMware\\ Fusion/vm net8/nat.conf.backup
-
-> 修改文件： vim /Library/Preferences/VMware\\ Fusion/vmnet8/nat.conf
-
-![](./media/image70.jpeg){width="6.05in" height="2.15in"}
-
-> 如图所示在 NAT gateway address 下修改： ip 为： 192.168.88.2
-> （这是网关的 IP ），并保存退出
-
-5.  ![](./media/image71.png){width="1.5930555555555554in"
-    height="1.9611100174978127in"}启动VMware Fusion ，进入 Linux 虚拟机
-
-![](./media/image72.png){width="1.6472222222222221in"
-height="1.9472211286089238in"}
-
-## 在VMware Fusion 中配置固定 IP {#在vmware-fusion-中配置固定-ip-3 .unnumbered}
-
-> 步骤 2 ：在 Linux 中修改固定 IP
-
--   ![](./media/image73.jpeg){width="2.4805555555555556in"
-    height="1.4930555555555556in"}在虚拟机的图形化页面中，打开终端，使用
-    su - 切换到 root 用户
-
--   ![](./media/image74.jpeg){width="3.1083333333333334in"
-    height="2.477777777777778in"}使用vim 编辑
-    /etc/sysconfig/network-scripts/ifcfg-ens33 文件，填入如下内容
-
--   执行： systemctl restart network 重启网卡，执行 ifconfig 即可看到 ip
-    地址固定为 192.168.88.130 了
-
-# ![](./media/image6.png)![](./media/image7.png)目录 {#目录-7 .unnumbered}
-
-> Contents
-
-# ![](./media/image8.png)学习目标 {#学习目标-7 .unnumbered}
-
-> Learning Objectives
 
 1.  掌握使用 ping 命令检查服务器是否可联通
 
