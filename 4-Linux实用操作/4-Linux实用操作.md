@@ -909,19 +909,19 @@ Linux 系统查看进程：
 
 * 使用 kill 命令不带 -9 选项
 
-![](./img/image107.jpeg)
+![](./img/image53.jpeg)
 
 
 
-![](./img/image108.jpeg)
+![](./img/image54.jpeg)
 
 * 使用 kill 命令带 -9 选项
 
-![](./img/image109.jpeg)
+![](./img/image55.jpeg)
 
 
 
-![](./img/image110.jpeg)
+![](./img/image56.jpeg)
 
 ## 总结
 
@@ -939,70 +939,56 @@ Linux 系统查看进程：
 
 # 九、主机状态
 
-# 十、环境变量
+## 查看系统资源占用
 
-# 十一、上传、下载
+可以通过 top 命令查看 CPU 、内存使用情况，类似 Windows 的任务管理器
 
-# 十二、压缩、解压
+默认每 5 秒刷新一次，语法：直接输入 top 即可，按 q 或ctrl + c 退出
+
+![](./img/image57.jpeg)
+
+## top 命令内容详解
+
+![](./img/image58.jpeg)
+
+-   第一行：
+    -   top：命令名称
+    -   14:39:58：当前系统时间
+    -   up 6 min：启动了 6 分钟
+    -   2 users： 2 个用户登录
+    -   load：1、5、15 分钟平均负载（几颗 CPU 百分百繁忙）
 
 
-
-> Learning Objectives
-
-1.  掌握查看主机运行状态的监控命令
-
-![](./media/image112.jpeg)
-
-## 查看系统资源占用 {#查看系统资源占用 .unnumbered}
-
--   可以通过 top 命令查看 CPU 、内存使用情况，类似 Windows 的任务管理器
-
-> 默认每 5 秒刷新一次，语法：直接输入 top 即可，按 q 或ctrl + c 退出
-
-![](./media/image114.png){width="1.5791666666666666in"
-height="1.8111111111111111in"}
-
-## top 命令内容详解 {#top-命令内容详解 .unnumbered}
-
--   ![](./media/image115.jpeg){width="6.941666666666666in"
-    height="0.22499890638670167in"}第一行：
-
-> top ：命令名称， 14:39:58 ：当前系统时间， up 6 min ：启动了 6 分钟，
-> 2 users ： 2 个用户登录， load ： 1 、 5 、 15 分钟负载
+![](./img/image59.jpeg)
 
 -   第二行：
+    -   Tasks：175 个进程
+    -   1 running：1个进程正在运行
+    -   174 sleeping：174 个进程睡眠
+    -   ）stopped：0 个停止进程
+    -   0 zombie：0 个僵尸进程
 
-> ![](./media/image116.jpeg){width="7.149998906386702in"
-> height="0.21666666666666667in"}Tasks ： 175 个进程， 1 running ： 1
-> 个进程子在运行， 174 sleeping ： 174 个进程睡眠， 0 个停止进程， 0
-> 个僵尸进程
+
+![](./img/image60.jpeg)
 
 -   第三行：
+    * %Cpu(s)：CPU 使用率
+    * us：用户 CPU 使用率
+    * sy：系统 CPU 使用率
+    * ni：高优先级进程占用 CPU 时间百分比
+    * id：空闲 CPU 率
+    * wa： IO 等待 CPU 占用率
+    * hi：CPU 硬件中断率
+    * si：CPU 软件中断率
+    * st：强制等待占用 CPU 率
 
-> %Cpu(s) ： CPU 使用率， us ：用户CPU 使用率， sy ：系统 CPU 使用率，
-> ni ：高优先级进程占用 CPU 时间百分比， id ：空闲 CPU 率， wa ： IO
-> 等待CPU
->
-> ![](./media/image117.jpeg){width="8.3in"
-> height="0.23333333333333334in"}占用率， hi ： CPU 硬件中断率， si ：
-> CPU 软件中断率， st ：强制等待占用 CPU 率
+![](./img/image61.jpeg)
 
 -   第四、五行：
+    * Kib Mem：物理内存，total：总量，free：空闲，used：使用，buff/cache： buff 和 cache 占用
+    * Kib Swap：虚拟内存（交换空间），total：总量，free：空闲，used：使用，buff/cache：buff 和 cache 占用
 
-> Kib Mem ：物理内存， total ：总量， free ：空闲， used ：使用，
-> buff/cache ： buff 和cache 占用
->
-> KibSwap ：虚拟内存（交换空间）， total ：总量， free ：空闲， used
-> ：使用， buff/cache ： buff 和cache 占用
-
-![](./media/image118.jpeg){width="6.5078740157480315in"
-height="0.4193744531933508in"}
-
-![](./media/image119.png){width="1.55in" height="1.8111111111111111in"}
-
-## top 命令内容详解 {#top-命令内容详解-1 .unnumbered}
-
-![](./media/image120.jpeg){width="8.391666666666667in" height="1.25in"}
+![](./img/image62.jpeg)
 
 -   PID ：进程 id
 
@@ -1018,9 +1004,8 @@ height="0.4193744531933508in"}
 
 -   SHR ：进程使用共享内存，单位 KB
 
--   S ：进程状态（ S 休眠， R 运行， Z 僵死状态， N 负数优先级， I
-    空闲状态）
-
+-   S ：进程状态（ S 休眠， R 运行， Z 僵死状态， N 负数优先级， I 空闲状态）
+    
 -   %CPU ：进程占用 CPU 率
 
 -   %MEM ：进程占用内存率
@@ -1029,200 +1014,152 @@ height="0.4193744531933508in"}
 
 -   COMMAND ：进程的命令或名称或程序文件路径
 
-## top 命令选项 {#top-命令选项 .unnumbered}
+## top 命令选项
 
-> top 命令也支持选项：
+top 命令也支持选项：
 
-![](./media/image121.jpeg){width="10.125in"
-height="3.2416666666666667in"}
+![](./img/image63.jpeg)
 
-![](./media/image122.png){width="1.6999989063867016in"
-height="2.488888888888889in"}高级软件人才培训专家
+## top 交互式选项
 
-![](./media/image123.png){width="1.6263888888888889in"
-height="1.8111111111111111in"}
+当top 以交互式运行（非 -b 选项启动），可以用以下交互式命令进行控制
 
-## top 交互式选项 {#top-交互式选项 .unnumbered}
+![](./img/image64.jpeg)
 
-> 当top 以交互式运行（非 -b 选项启动），可以用以下交互式命令进行控制
+## 磁盘信息监控
 
-![](./media/image124.jpeg){width="7.6550907699037625in"
-height="4.316666666666666in"}
+* 使用df 命令，可以查看硬盘的使用情况
 
-![](./media/image125.png){width="2.1527777777777777in"
-height="2.0902777777777777in"}
+语法：`df [-h]`
 
-## 磁盘信息监控 {#磁盘信息监控 .unnumbered}
+选项：-h，以更加人性化的单位显示
 
--   使用df 命令，可以查看硬盘的使用情况
-
-> 语法： df \[-h\]
->
-> 选项： -h ，以更加人性化的单位显示
-
-![](./media/image126.jpeg){width="5.613659230096238in"
-height="3.9812489063867016in"}
-
-![](./media/image127.png){width="1.8111100174978128in"
-height="1.7583333333333333in"}
-
-## 磁盘信息监控 {#磁盘信息监控-1 .unnumbered}
+![](./img/image65.jpeg)
 
 -   可以使用 iostat 查看CPU 、磁盘的相关信息
 
-> 语法： iostat \[-x\] \[num1\] \[num2\]
+语法：`iostat [-x] [num1] [num2]`
 
--   选项： -x ，显示更多信息
+选项：-x，显示更多信息
 
--   ![](./media/image128.jpeg){width="8.25in"
-    height="1.8916666666666666in"}num1 ：数字，刷新间隔， num2
-    ：数字，刷新几次
+num1：数字，刷新间隔，num2：数字，刷新几次
 
-> tps ：该设备每秒的传输次数（ Indicate the number of transfers per
-> second that were issued to the device. ）。\" 一次传输 \" 意思是 \"
-> 一次I/O 请求\" 。多个逻辑请求可能会被合并为 \" 一次I/O 请求\" 。\"
-> 一次传输 \" 请求的大小是未知的。
+![](./img/image66.jpeg)
 
-![](./media/image129.png)
+tps ：该设备每秒的传输次数（ Indicate the number of transfers per second that were issued to the device. ）。
 
-## 磁盘信息监控 {#磁盘信息监控-2 .unnumbered}
+\" 一次传输\" 意思是 \"一次I/O 请求\" 。多个逻辑请求可能会被合并为 \" 一次I/O 请求\" 。\"一次传输\" 请求的大小是未知的。
 
--   ![](./media/image130.jpeg){width="10.668055555555556in"
-    height="1.6180555555555556in"}使用iostat 的-x 选项，可以显示更多信息
+-   使用iostat 的-x 选项，可以显示更多信息
 
-> rrqm/s ： 每秒这个设备相关的读取请求有多少被 Merge
-> 了（当系统调用需要读取数据的时候， VFS 将请求发到各个 FS ，如果 FS
-> 发现不同的读取请求读取的是相同 Block 的数据， FS会将这个请求合并
-> Merge, 提高 IO 利用率, 避免重复调用）；
->
-> wrqm/s ： 每秒这个设备相关的写入请求有多少被 Merge 了。 rsec/s ：
-> 每秒读取的扇区数； sectors
->
-> wsec/ ： 每秒写入的扇区数。
->
-> rKB/s ： 每秒发送到设备的读取请求数 wKB/s ：
-> 每秒发送到设备的写入请求数 avgrq-sz 平均请求扇区的大小
->
-> avgqu-sz 平均请求队列的长度。毫无疑问，队列长度越短越好。 await ：
-> 每一个 IO 请求的处理的平均时间（单位是微秒毫秒）。 svctm
-> 表示平均每次设备 I/O 操作的服务时间（以毫秒为单位）
->
-> %util ： 磁盘利用率
+![](./img/image67.jpeg)
 
-高级软件人才培训专家
+* rrqm/s： 每秒这个设备相关的读取请求有多少被 Merge 了（当系统调用需要读取数据的时候，VFS 将请求发到各个 FS ，如果 FS 发现不同的读取请求读取的是相同 Block 的数据， FS会将这个请求合并 Merge, 提高 IO 利用率，避免重复调用）
 
-![](./media/image131.png)
+* wrqm/s ： 每秒这个设备相关的写入请求有多少被 Merge 了
+* rsec/s ：每秒读取的扇区数； sectors
 
-## 网络状态监控 {#网络状态监控 .unnumbered}
+* wsec/ ：每秒写入的扇区数
 
--   可以使用 sar 命令查看网络的相关统计（ sar
-    命令非常复杂，这里仅简单用于统计网络）
+* **rKB/s ： 每秒发送到设备的读取请求数**
+* **wKB/s ：每秒发送到设备的写入请求数**
+* avgrq-sz：平均请求扇区的大小
 
-> 语法： sar -n DEV num1 num2
->
-> 选项： -n ，查看网络， DEV 表示查看网络接口
->
-> num1 ：刷新间隔（不填就查看一次结束）， num2
-> ：查看次数（不填无限次数）
->
-> **信息解读：**
+* avgqu-sz：平均请求队列的长度。毫无疑问，队列长度越短越好
+* await ：每一个 IO 请求的处理的平均时间（单位是微秒毫秒）
+* svctm：表示平均每次设备 I/O 操作的服务时间（以毫秒为单位）
 
--   **IFACE 本地网卡接口的名称**
+* **%util ： 磁盘利用率**
 
--   **rxpck/s 每秒钟接受的数据包**
+## 网络状态监控
 
--   **txpck/s 每秒钟发送的数据包**
+-   可以使用 sar 命令查看网络的相关统计（ sar  命令非常复杂，这里仅简单用于统计网络）
 
--   **rxKB/S 每秒钟接受的数据包大小，单位为 KB**
+语法：`sar -n DEV num1 num2`
 
--   **txKB/S 每秒钟发送的数据包大小，单位为 KB**
+选项： -n ，查看网络， DEV 表示查看网络接口
 
--   **rxcmp/s 每秒钟接受的压缩数据包**
+num1：刷新间隔（不填就查看一次结束），num2：查看次数（不填无限次数）
 
--   **txcmp/s 每秒钟发送的压缩包**
+如图，查看2次，隔3秒刷新一次，并最终汇总平均记录：
 
--   **rxmcst/s 每秒钟接收的多播数据包**
+![](img/image68.png)
 
-高级软件人才培训专家
+**信息解读：**
 
-### ![](./media/image17.png)使用 top 命令可以：
+-   IFACE：本地网卡接口的名称
+
+-   rxpck/s：每秒钟接受的数据包
+
+-   txpck/s：每秒钟发送的数据包
+
+-   **rxKB/S：每秒钟接受的数据包大小，单位为 KB**
+
+-   **txKB/S：每秒钟发送的数据包大小，单位为 KB**
+
+-   rxcmp/s：每秒钟接受的压缩数据包
+
+-   txcmp/s：每秒钟发送的压缩包
+
+-   rxmcst/s：每秒钟接收的多播数据包
+
+## 总结
+
+1. 使用 top 命令可以：
 
 -   类似Windows 任务管理器
 
 -   查看CPU 、内存、进程的信息
 
-### 使用 df 命令可以：
+2. 使用 df 命令可以：
 
 -   查看磁盘使用率
 
-### 使用 iostat 可以：
+3. 使用 iostat 可以：
 
 -   查看磁盘速率等信息
 
-### 使用 sar -n DEV 命令可以：
+4. 使用 sar -n DEV 命令可以：
 
 -   查看网络情况
 
-高级软件人才培训专家
+# 十、环境变量
 
-# ![](./media/image6.png)![](./media/image7.png)目录 {#目录-11 .unnumbered}
+## 环境变量
 
-> Contents
+在讲解 which 命令的时候，我们知道使用的一系列命令其实本质上就是一个个的可执行程序。
 
-# ![](./media/image8.png)学习目标 {#学习目标-11 .unnumbered}
+比如，cd 命令的本体就是： /usr/bin/cd 这个程序文件。
 
-> Learning Objectives
+我们是否会有疑问，为何无论当前工作目录在哪里，都能执行：/usr/bin/cd 这个程序呢？
 
-1.  理解环境变量的作用
+这就是环境变量的作用。
 
-2.  掌握符号 \$ 的作用
+环境变量是操作系统（ Windows 、 Linux 、 Mac）在运行的时候，记录的一些关键性信息，用以辅助系统运行。
 
-3.  掌握在 Linux 中配置环境变量
+在 Linux 系统中执行： env 命令即可查看当前系统中记录的环境变量
 
-## 环境变量 {#环境变量 .unnumbered}
+环境变量是一种 KeyValue 型结构，即名称和值，如下图：
 
-> 在讲解which
-> 命令的时候，我们知道使用的一系列命令其实本质上就是一个个的可执行程序。比如，
-> cd 命令的本体就是： /usr/bin/cd 这个程序文件。
->
-> ![](./media/image133.png){width="2.123611111111111in"
-> height="2.123611111111111in"}![](./media/image134.png){width="1.2444444444444445in"
-> height="1.4569444444444444in"}我们是否会有疑问，为何无论当前工作目录在哪里，都能执行：
-> /usr/bin/cd 这个程序呢？这就是环境变量的作用啦。
+![](./img/image69.jpeg)
 
-![](./media/image135.png){width="2.172221128608924in"
-height="2.0722222222222224in"}
+如图，图中记录了：
 
-## 环境变量 {#环境变量-1 .unnumbered}
+-   HOME ： /home/itheima ，用户的 HOME 路径
 
-> 环境变量是操作系统（ Windows 、 Linux 、 Mac
-> ）在运行的时候，记录的一些关键性信息，用以辅助系统运行。在 Linux
-> 系统中执行： env 命令即可查看当前系统中记录的环境变量
->
-> 环境变量是一种 KeyValue 型结构，即名称和值，如下图：
->
-> ![](./media/image136.jpeg){width="6.088888888888889in"
-> height="3.8222222222222224in"}**如左图，图中记录了：**
+-   USER ： itheima ，当前的操作用户
 
--   **HOME ： /home/itheima ，用户的 HOME 路径**
+-   PWD ：当前工作路径
 
--   **USER ： itheima ，当前的操作用户**
+-   ...\... 等等一系列信息，用于辅助系统在运行的时候从环境变量中获取关键信息
 
--   **PWD ：当前工作路径**
+## 环境变量： PATH
 
--   **\...\...**
+在前面提出的问题中，我们说无论当前工作目录是什么，都能执行 /usr/bin/cd 这个程序，这个就是借助环境变量中 PATH 这个项目的值来做到的。
 
-> **等等一系列信息，用于辅助系统在运行的时候从环境变量中获取关键信息**
+![](./img/image70.jpeg)
 
-## 环境变量： PATH {#环境变量-path .unnumbered}
-
-> ![](./media/image137.jpeg){width="10.183332239720036in"
-> height="0.4666666666666667in"}在前面提出的问题中，我们说无论当前工作目录是什么，都能执行
-> /usr/bin/cd 这个程序，这个就是借助环境变量中： PATH
-> 这个项目的值来做到的。
->
-> PATH 记录了系统执行任何命令的搜索路径，如上图记录了（路径之间以 :
-> 隔开）：
+PATH 记录了系统执行任何命令的搜索路径，如上图记录了（路径之间以 : 隔开）：
 
 -   /usr/local/bin
 
@@ -1236,41 +1173,33 @@ height="2.0722222222222224in"}
 
 -   /home/itheima/bin
 
-> ![](./media/image138.png){width="2.225in"
-> height="2.2249989063867015in"}当执行任何命令，都会按照顺序，从上述路径中搜索要执行的程序的本体比如执行
-> cd 命令，就从第二个目录 /usr/bin 中搜索到了 cd 命令，并执行
+当执行任何命令，都会按照顺序，从上述路径中搜索要执行的程序的本体
 
-高级软件人才培训专家
+比如执行 cd 命令，就从第二个目录 /usr/bin 中搜索到了 cd 命令，并执行
 
-## \$ 符号 {#符号 .unnumbered}
+## \$ 符号
 
-> 在 Linux 系统中， \$ 符号被用于取"变量"的值。
->
-> 环境变量记录的信息，除了给操作系统自己使用外，如果我们想要取用，也可以使用。取得环境变量的值就可以通过语法：
-> \$ 环境变量名 来取得
->
-> 比如： echo \$PATH
->
-> ![](./media/image139.jpeg){width="9.616666666666667in"
-> height="0.4666655730533683in"}就可以取得 PATH 这个环境变量的值，并通过
-> echo 语句输出出来。
->
-> ![](./media/image140.jpeg){width="9.941666666666666in"
-> height="0.45in"}又或者： echo \${PATH}ABC
->
-> ![](./media/image141.png){width="1.9111111111111112in"
-> height="2.0194444444444444in"}当和其它内容混合在一起的时候，可以通过
-> {} 来标注取的变量是谁
+在 Linux 系统中， $ 符号被用于取"变量"的值。
 
-高级软件人才培训专家
+环境变量记录的信息，除了给操作系统自己使用外，如果我们想要取用，也可以使用。
 
-![](./media/image142.png)
+取得环境变量的值就可以通过语法：`$ 环境变量名` 来取得
 
-## 自行设置环境变量 {#自行设置环境变量 .unnumbered}
+比如： echo \$PATH 就可以取得 PATH 这个环境变量的值，并通过 echo 语句输出出来。
 
-> Linux 环境变量可以用户自行设置，其中分为：
+![](./img/image71.jpeg)
 
--   临时设置，语法： export 变量名 = 变量值
+又或者： echo \${PATH}ABC
+
+![](./img/image72.jpeg)
+
+当和其它内容混合在一起的时候，可以通过 { } 来标注取的变量是谁
+
+## 自行设置环境变量
+
+Linux 环境变量可以用户自行设置，其中分为：
+
+-   临时设置，语法： `export 变量名 = 变量值`
 
 -   永久生效
 
@@ -1278,60 +1207,47 @@ height="2.0722222222222224in"}
 
     -   针对所有用户生效，配置在系统的： /etc/profile 文件中
 
-    -   并通过语法： source 配置文件，进行立刻生效，或重新登录
-        > FinalShell 生效
+    -   并通过语法： `source 配置文件`，进行立刻生效，或重新登录 FinalShell 生效
 
-![](./media/image143.jpeg){width="5.674998906386701in"
-height="0.683332239720035in"}
+![](./img/image73.jpeg)
 
-高级软件人才培训专家
+## 自定义环境变量 PATH
 
-![](./media/image144.png)
+环境变量 PATH 这个项目里面记录了系统执行命令的搜索路径。这些搜索路径我们也可以自行添加到 PATH 中去。
 
-## 自定义环境变量 PATH {#自定义环境变量-path .unnumbered}
+测试：
 
-> 环境变量 PATH
-> 这个项目里面记录了系统执行命令的搜索路径。这些搜索路径我们也可以自行添加到
-> PATH 中去。
->
-> 测试：
-
--   在当前 HOME 目录内创建文件夹， myenv ，在文件夹内创建文件 mkhaha
+-   在当前 HOME 目录内创建文件夹 myenv ，在文件夹内创建文件 mkhaha
 
 -   通过vim 编辑器，在 mkhaha 文件内填入： echo 哈哈哈哈哈
 
-> 完成上述操作后，随意切换工作目录，执行 mkhaha
-> 命令尝试一下，会发现无法执行
+完成上述操作后，随意切换工作目录，执行 mkhaha 命令尝试一下，会发现无法执行
 
 -   修改PATH 的值
 
-> 临时修改PATH ： export PATH=\$PATH:/home/itheima/myenv ，再次执行
-> mkhaha ，无论在哪里都能执行了或将export
-> PATH=\$PATH:/home/itheima/myenv
-> ，填入用户环境变量文件或系统环境变量文件中去
+临时修改PATH： export PATH=\$PATH:/home/itheima/myenv ，再次执行 mkhaha ，无论在哪里都能执行了
 
-高级软件人才培训专家
+或将 export PATH=\$PATH:/home/itheima/myenv，填入用户环境变量文件或系统环境变量文件中去
 
-### 什么是环境变量？
+## 总结
 
-> ![](./media/image17.png)环境变量是一组信息记录，类型是 KeyValue
-> 型（名称= 值），用于操作系统运行的时候记录关键信息
+1. 什么是环境变量？
 
-1.  通过 env 命令可以查看当前系统配置的环境变量信息
+环境变量是一组信息记录，类型是 KeyValue 型（名称= 值)，用于操作系统运行的时候记录关键信息
 
-2.  通过 \$ 符号，可以取出环境变量的值
+2. 通过 env 命令可以查看当前系统配置的环境变量信息
 
-3.  什么是 PATH ，作用是？
+3. 通过 \$ 符号，可以取出环境变量的值
 
-> 环境变量 PATH 会记录一组目录，目录之间用 :
-> 隔开。这里记录的是命令的搜索路径，当执行命令会从记录中记录的目录中挨个搜索要执行的命令并执行。
->
-> 可以通过修改这个项目的值，加入自定义的命令搜索路径如export
-> PATH=\$PATH: 自定义路径
+4. 什么是 PATH ，作用是？
 
-### 如何修改环境变量？
+环境变量 PATH 会记录一组目录，目录之间用 : 隔开。这里记录的是命令的搜索路径，当执行命令会从记录中记录的目录中挨个搜索要执行的命令并执行。
 
--   临时生效： export 名称= 值
+可以通过修改这个项目的值，加入自定义的命令搜索路径。如 export PATH=\$PATH: 自定义路径
+
+5. 如何修改环境变量？
+
+-   临时生效： `export 名称= 值`
 
 -   永久生效：
 
@@ -1341,74 +1257,57 @@ height="0.683332239720035in"}
 
     -   配置完成，可以通过 source 命令立刻生效
 
-高级软件人才培训专家
+# 十一、上传、下载
 
-# ![](./media/image6.png)![](./media/image7.png)目录 {#目录-12 .unnumbered}
+## 上传、下载
 
-> Contents
+我们可以通过 FinalShell 工具，方便的和虚拟机进行数据交换。
 
-# ![](./media/image8.png)学习目标 {#学习目标-12 .unnumbered}
-
-> Learning Objectives
-
-1.  掌握通过 FinalShell 在Linux 系统中进行上传、下载
-
-2.  掌握 rz 、 sz 命令
-
-![](./media/image145.jpeg)
-
-## 上传、下载 {#上传下载 .unnumbered}
-
-> 我们可以通过 FinalShell 工具，方便的和虚拟机进行数据交换。
->
-> 在FinalShell 软件的下方窗体中，提供了 Linux
-> 的文件系统视图，可以方便的：
+在FinalShell 软件的下方窗体中，提供了 Linux 的文件系统视图，可以方便的：
 
 -   浏览文件系统，找到合适的文件，右键点击下载，即可传输到本地电脑
 
--   浏览文件系统，找到合适的目录，将本地电脑的文件拓展进入，即可方便的上传数据到
-    Linux 中
+-   浏览文件系统，找到合适的目录，将本地电脑的文件拓展进入，即可方便的上传数据到 Linux 中
 
-高级软件人才培训专家
+![](./img/image74.jpeg)
 
-## rz 、 sz 命令 {#rz-sz-命令 .unnumbered}
+## rz 、 sz 命令
 
-> 当然，除了通过 FinalShell 的下方窗体进行文件的传输以外，也可以通过 rz
-> 、 sz 命令进行文件传输。 rz 、 sz 命令需要安装，可以通过： yum -y
-> install lrzsz ，即可安装。
+当然，除了通过 FinalShell 的下方窗体进行文件的传输以外，也可以通过 rz、sz 命令进行文件传输。 
 
--   ![](./media/image146.jpeg){width="2.4555555555555557in"
-    height="1.4305555555555556in"}rz 命令，进行上传，语法：直接输入 rz
-    即可
+rz 、 sz 命令需要安装，可以通过： yum -y install lrzsz ，即可安装。
+
+-   rz 命令，进行上传，语法：直接输入 rz 即可
+
+![](./img/image75.jpeg)
 
 -   sz 命令进行下载，语法： sz 要下载的文件
 
-> ![](./media/image147.jpeg){width="5.838888888888889in"
-> height="0.8805555555555555in"}文件会自动下载到桌面的： fsdownload
-> 文件夹中。
->
-> 注意， rz 、 sz 命令需要终端软件支持才可正常运行
->
-> FinalShell 、 SecureCRT 、 XShell 等常用终端软件均支持此操作
+![](./img/image76.jpeg)
 
-### ![](./media/image148.jpeg){width="3.769628171478565in" height="1.9966666666666666in"}![](./media/image17.png)如何使用 FinalShell 对Linux 系统进行上传下载操作？
+文件会自动下载到桌面的： fsdownload 文件夹中。
 
-1.  rz 、 sz 命令
+注意， rz 、sz 命令需要终端软件支持才可正常运行
 
-    -   通过 yum -y install lrzsz 可以安装此命令
+FinalShell 、 SecureCRT 、 XShell 等常用终端软件均支持此操作
 
-    -   rz 进行文件上传
+## 总结
 
-    -   sz 文件，进行文件下载
+1. 如何使用 FinalShell 对Linux 系统进行上传下载操作？ 
 
-# ![](./media/image6.png)目录 {#目录-13 .unnumbered}
+![](./img/image74.jpeg)
 
-> Contents
+2. rz 、sz 命令
 
-![](./media/image7.png){width="0.44666666666666666in"
-height="0.44666557305336835in"}
+-   通过 yum -y install lrzsz 可以安装此命令
 
-# ![](./media/image8.png)学习目标 {#学习目标-13 .unnumbered}
+-   rz 进行文件上传
+
+-   sz 文件，进行文件下载
+
+# 十二、压缩、解压
+
+
 
 > Learning Objectives
 
