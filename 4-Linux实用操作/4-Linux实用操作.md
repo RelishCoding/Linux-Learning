@@ -1307,198 +1307,145 @@ FinalShell 、 SecureCRT 、 XShell 等常用终端软件均支持此操作
 
 # 十二、压缩、解压
 
+## 压缩格式
 
+市面上有非常多的压缩格式
 
-> Learning Objectives
+-   zip 格式：Linux、Windows、MacOS 常用
 
-1.  掌握使用 tar 命令压缩或解压 tar 或gzip 文件
+-   7zip：Windows 系统常用
 
-2.  掌握使用 zip 、 unzip 命令压缩或解压 zip 文件
+-   rar：Windows 系统常用
 
-![](./media/image91.png)
+-   tar：Linux、MacOS 常用
 
-## 压缩格式 {#压缩格式 .unnumbered}
+-   gzip： Linux、MacOS 常用
 
-> 市面上有非常多的压缩格式
+在Windows 系统中常用的软件如：winrar、bandizip 等软件，都支持各类常见的压缩格式，这里不多做讨论。我们现在要学习，如何在 Linux 系统中操作：tar、gzip、zip 这三种压缩格式，完成文件的压缩、解压操作。
 
--   zip 格式： Linux 、 Windows 、 MacOS ，常用
+## tar 命令
 
--   7zip ： Windows 系统常用
+Linux 和 Mac 系统常用有 2 种压缩格式，后缀名分别是：
 
--   rar ： Windows 系统常用
+-   .tar ，称之为 tarball ，归档文件，即简单的将文件组装到一个 .tar 的文件内，并没有太多文件体积的减少，仅仅是简单的封装
 
--   tar ： Linux 、 MacOS 常用
+-   .gz ，也常见为 .tar.gz ， gzip 格式压缩文件，即使用 gzip 压缩算法将文件压缩到一个文件内，可以极大的减少压缩后的体积
 
--   gzip ： Linux 、 MacOS 常用
+针对这两种格式，使用 tar 命令均可以进行压缩和解压缩的操作
 
-> 在Windows 系统中常用的软件如： winrar 、 bandizip
-> 等软件，都支持各类常见的压缩格式，这里不多做讨论。我们现在要学习，如何在
-> Linux 系统中操作： tar 、 gzip 、 zip 这三种压缩格式
->
-> 完成文件的压缩、解压操作。
-
-高级软件人才培训专家
-
-## tar 命令 {#tar-命令 .unnumbered}
-
-> Linux 和 Mac 系统常用有 2 种压缩格式，后缀名分别是：
-
--   .tar ，称之为 tarball ，归档文件，即简单的将文件组装到一个 .tar
-    的文件内，并没有太多文件体积的减少，仅仅是
-
-> 简单的封装
-
--   .gz ，也常见为 .tar.gz ， gzip 格式压缩文件，即使用 gzip
-    压缩算法将文件压缩到一个文件内，可以极大的减少压缩
-
-> 后的体积
->
-> 针对这两种格式，使用 tar 命令均可以进行压缩和解压缩的操作
->
-> 语法：
+语法：`tar [-c -v -x -f -z -C] 参数1 参数2 ... 参数N`
 
 -   -c ，创建压缩文件，用于压缩模式
 
 -   -v ，显示压缩、解压过程，用于查看进度
 
--   ![](./media/image149.jpeg){width="4.430555555555555in"
-    height="0.3333333333333333in"}-x ，解压模式
-
--   -f ，要创建的文件，或要解压的文件， -f
-    选项必须在所有选项中位置处于最后一个
-
+-   -x ，解压模式
+    
+-   -f ，要创建的文件，或要解压的文件， -f 选项必须在所有选项中位置处于最后一个
+    
 -   -z ， gzip 模式，不使用 -z 就是普通的 tarball 格式
 
 -   -C ，选择解压的目的地，用于解压模式
 
-![](./media/image92.png){width="1.7263877952755906in"
-height="1.726388888888889in"}高级软件人才培训专家
+## tar 命令压缩
 
-![](./media/image94.png)
+tar 的常用组合为：
 
-## tar 命令压缩 {#tar-命令压缩 .unnumbered}
+-   `tar -cvf test.tar 1.txt 2.txt 3.txt`
 
-> tar 的常用组合为：
+将 1.txt 2.txt 3.txt 压缩到 test.tar 文件内
 
--   tar -cvf test.tar 1.txt 2.txt 3.txt
+-   `tar -zcvf test.tar.gz 1.txt 2.txt 3.txt`
 
-> 将 1.txt 2.txt 3.txt 压缩到 test.tar 文件内
+将 1.txt 2.txt 3.txt 压缩到 test.tar.gz 文件内，使用 gzip 模式
 
--   tar -zcvf test.tar.gz 1.txt 2.txt 3.txt
-
-> 将 1.txt 2.txt 3.txt 压缩到 test.tar.gz 文件内，使用 gzip 模式
->
 > 注意：
-
--   -z 选项如果使用的话，一般处于选项位第一个
-
--   -f 选项，必须在选项位最后一个
-
-高级软件人才培训专家
-
-## tar 解压 {#tar-解压 .unnumbered}
-
-> 常用的 tar 解压组合有
-
--   tar -xvf test.tar
-
-> 解压 test.tar ，将文件解压至当前目录
-
--   tar -xvf test.tar -C /home/itheima
-
-> 解压 test.tar ，将文件解压至指定目录（ /home/itheima ）
-
--   tar -zxvf test.tar.gz -C /home/itheima
-
-> 以Gzip 模式解压 test.tar.gz ，将文件解压至指定目录（ /home/itheima ）
 >
+> * -z 选项如果使用的话，一般处于选项位第一个
+> * -f 选项，必须在选项位最后一个
+
+## tar 解压
+
+常用的 tar 解压组合有
+
+-   `tar -xvf test.tar`
+
+解压 test.tar ，将文件解压至当前目录
+
+-   `tar -xvf test.tar -C /home/itheima`
+
+解压 test.tar ，将文件解压至指定目录（ /home/itheima ）
+
+-   `tar -zxvf test.tar.gz -C /home/itheima`
+
+以Gzip 模式解压 test.tar.gz ，将文件解压至指定目录（ /home/itheima ）
+
 > 注意：
-
--   -f 选项，必须在选项组合体的最后一位
-
--   -z 选项，建议在开头位置
-
--   -C 选项单独使用，和解压所需的其它参数分开
-
-![](./media/image98.png){width="1.4291655730533683in"
-height="1.6291666666666667in"}高级软件人才培训专家
-
-![](./media/image100.png)
-
-## zip 命令压缩文件 {#zip-命令压缩文件 .unnumbered}
-
-> 可以使用 zip 命令，压缩文件为 zip 压缩包
 >
-> ![](./media/image150.png){width="2.6041655730533684in"
-> height="0.30138779527559056in"}语法：
+> * -f 选项，必须在选项组合体的最后一位
+> * -z 选项，建议在开头位置
+> * -C 选项单独使用，和解压所需的其它参数分开
 
--   -r ，被压缩的包含文件夹的时候，需要使用 -r 选项，和 rm 、 cp
-    等命令的 -r 效果一致
+## zip 命令压缩文件
 
-> 示例：
+可以使用 zip 命令，压缩文件为 zip 压缩包
+
+语法：`zip [-r] 参数1 参数2 ... 参数N`
+
+-   -r ，被压缩的包含文件夹的时候，需要使用 -r 选项，和 rm 、 cp 等命令的 -r 效果一致
+
+示例：
 
 -   zip test.zip a.txt b.txt c.txt
 
-> 将a.txt b.txt c.txt 压缩到 test.zip 文件内
+将a.txt b.txt c.txt 压缩到 test.zip 文件内
 
 -   zip -r test.zip test itheima a.txt
 
-> 将test 、 itheima 两个文件夹和 a.txt 文件，压缩到 test.zip 文件内
+将test 、 itheima 两个文件夹和 a.txt 文件，压缩到 test.zip 文件内
 
-高级软件人才培训专家
+## unzip 命令解压文件
 
-![](./media/image102.png)
+使用 unzip 命令，可以方便的解压 zip 压缩包
 
-## unzip 命令解压文件 {#unzip-命令解压文件 .unnumbered}
-
-> 使用unzip 命令，可以方便的解压 zip 压缩包
->
-> ![](./media/image151.png){width="1.4583333333333333in"
-> height="0.2916666666666667in"}语法：
+语法：`unzip [-d] 参数`
 
 -   -d ，指定要解压去的位置，同 tar 的-C 选项
 
 -   参数，被解压的 zip 压缩包文件
 
-> 示例：
+示例：
 
 -   unzip test.zip ，将 test.zip 解压到当前目录
 
--   unzip test.zip -d /home/itheima ，将test.zip 解压到指定文件夹内（
-    /home/itheima ）
+-   unzip test.zip -d /home/itheima ，将test.zip 解压到指定文件夹内（/home/itheima ）
 
-高级软件人才培训专家
+## 总结
 
-### Linux 系统常用的压缩格式有：
+1. Linux 系统常用的压缩格式有：
 
--   ![](./media/image17.png)tar
-    > 格式，归档文件，简单的将文件整合到一个文件内，无压缩效果
-
+-   tar 格式，归档文件，简单的将文件整合到一个文件内，无压缩效果
+    
 -   gzip 格式， gzip 压缩文件，不仅能整合到一个文件，同时有体积压缩效果
 
-### tar 命令
+2. tar 命令
 
-> tar \[-z -x -v -c -f -C\] 参数 \...
+> tar [-z -x -v -c -f -C\] 参数 \...
 
--   -c ，创建压缩文件、 -v ，查看压缩 \\ 解压过程、 -x ，解压模式
+-   -c：创建压缩文件，-v：查看压缩 \\ 解压过程，-x：解压模式
 
--   -f ，指定压缩 \\ 解压的文件， -z ， gzip 模式， -C ，指定解压的路径
+-   -f：指定压缩 \\ 解压的文件，-z：gzip 模式，-C：指定解压的路径
 
--   -z 在选项组建议在开头， -f 在选项组内必须在尾部， -C 单独使用
+-   -z：在选项组建议在开头，-f：在选项组内必须在尾部，-C 单独使用
 
-### zip 命令
+3. zip 命令
 
-> zip \[-r\] 参数 \...
+> zip [-r\] 参数 \...
 
--   -r ，压缩文件夹使用
+-   -r：压缩文件夹使用
 
-### unzip 命令
+4. unzip 命令
 
-> unzip \[-d\] 参数
+> unzip [-d\] 参数
 
--   -d ，指定解压去的目录
-
-高级软件人才培训专家
-
-> ![](./media/image152.png){width="2.4960629921259843in"
-> height="1.030207786526684in"}
+-   -d：指定解压去的目录
